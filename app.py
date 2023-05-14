@@ -47,6 +47,12 @@ def get_users_by_condition():
     return 'User %s' % name 
 
 
+@app.route('/users/<grade>')
+def show_user_profile(name):
+    # show the user profile for that user
+    return 'grade %s' % name 
+
+
 if __name__ == '__main__':
    
     app.debug = True
