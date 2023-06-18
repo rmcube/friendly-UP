@@ -102,4 +102,4 @@ def update_user(user_id):
     return jsonify({'error': 'User not found'}), 404
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=5000)
