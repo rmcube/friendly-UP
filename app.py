@@ -12,7 +12,6 @@ def show_user_profile(name):
 def get_users_by_condition():
     '''this router allow us to get a list of user info by name and school.
     '''
-    name = request.args.get('name')
     school = request.args.get('school')
     
     query = getUsers.query1
@@ -46,6 +45,7 @@ def get_users_by_condition():
     return 'User %s' % name 
 
 
+<<<<<<< HEAD
 @app.route('/users/by/grade', method=["GET"])
 def get_user_by_condition(grade):
     '''this router allow us to get a list of user info by grade and school.
@@ -91,6 +91,8 @@ def get_user_by_condition(school):
     "select * from users where grade = %s and school = %s" , school
     return 'users %s' % school   
 
+=======
+>>>>>>> 96d0ff3fc03e69a9c967e16187b90a2ae7449c67
 if __name__ == '__main__':
    
     app.debug = True
