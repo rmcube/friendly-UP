@@ -4,14 +4,11 @@ import pymysql
 app = Flask(__name__)
 
 # MySQL 데이터베이스 연결
-conn = pymysql.connect(
-    host='localhost',
-    user='your_username',
-    password='your_password',
-    database='your_database',
-    charset='utf8mb4',
-    cursorclass=pymysql.cursors.DictCursor
-)
+con = pymysql.connect(host='127.0.0.1', user='root', password='4235',
+                      db='sgit tudy_db_test', charset='utf8', # 한글처리 (charset = 'utf8')
+                      autocommit=True, # 결과 DB 반영 (Insert or update)
+                      cursorclass=pymysql.cursors.DictCursor # DB조회시 컬럼명을 동시에 보여줌
+                     )
 
 # 회원 가입 엔드포인트
 @app.route('/api/user/signup', methods=['POST'])
