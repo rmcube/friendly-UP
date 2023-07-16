@@ -1,7 +1,6 @@
 from datetime import datetime
 
 
-
 #user 정보 입력 (list) -> user정보에 저장  [name, grade, school, created_at, updated_at]    ----> create user
 user = {
     "name":"solmin",
