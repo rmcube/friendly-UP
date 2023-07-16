@@ -107,7 +107,7 @@ sql6 = '''
 '''
 
 # 각 테이블 생성 쿼리 실행
-for sql in [sql1, sql2, sql3, sql4, sql5, sql6]:
+for sql in [sql5, sql1, sql2, sql3, sql4, sql6]:
     cur.execute(sql)
 
 # 변경 내용을 커밋
