@@ -1,11 +1,14 @@
-import pymysql;
-con = pymysql.connect(host='127.0.0.1', user='root', password='4235',
+import pymysql
+
+# MySQL 서버에 연결
+conn = pymysql.connect(host='127.0.0.1', user='root', password='4235',
                       db='study_db_test', charset='utf8', # 한글처리 (charset = 'utf8')
                       autocommit=True, # 결과 DB 반영 (Insert or update)
                       cursorclass=pymysql.cursors.DictCursor # DB조회시 컬럼명을 동시에 보여줌
                      )
-cur = con.cursor()
-# alarm 테이블 생성 쿼리 실행
+cur = conn.cursor()
+
+# user 테이블 생성 쿼리 실행
 sql1 = '''
     CREATE TABLE alarm (
         alarm_id INT NOT NULL AUTO_INCREMENT,
@@ -108,10 +111,14 @@ sql6 = '''
 
 # 각 테이블 생성 쿼리 실행
 for sql in [sql5, sql1, sql2, sql3, sql4, sql6]:
-    cur.execute(sql)
+    if cur.execute("SHOW TABLES LIKE " + "'" + sql.split()[2] + "'") == 0:
+        cur.execute(sql)
+        print(f"{sql.split()[2]} 테이블이 생성되었습니다.")
+    else:
+        print(f"{sql.split()[2]} 테이블이 이미 존재합니다.")
 
 # 변경 내용을 커밋
-con.commit()
+conn.commit()
 
 # 연결 해제
-con.close()
+conn.close()
