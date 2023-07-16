@@ -1,27 +1,4 @@
 import pymysql;
-
-DB_HOST = '127.0.0.1'  # 호스트 주소(localhost 는 내 컴퓨터를 의미합니다.)
-DB_USER = 'root'  # 데이터베이스 사용자 계정
-DB_PASS = '4235'  # 데이터베이스 사용자 비밀번호
-DB_NAME = 'study_db_test'  # 데이터베이스 이름
- 
-# 데이터베이스에 연결합니다.
-conn = pymysql.connect(
-    host=DB_HOST,
-    user=DB_USER,
-    password=DB_PASS,
-    charset='utf8mb4'
-)
-
-# 데이터베이스 커서를 가져옵니다.
-cursor = conn.cursor()
-
-# 데이터베이스를 생성합니다.
-cursor.execute('CREATE DATABASE IF NOT EXISTS study_db_test')
-
-# 데이터베이스와의 연결을 닫습니다.
-conn.close()
-
 con = pymysql.connect(host='127.0.0.1', user='root', password='4235',
                       db='study_db_test', charset='utf8', # 한글처리 (charset = 'utf8')
                       autocommit=True, # 결과 DB 반영 (Insert or update)
