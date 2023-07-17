@@ -27,7 +27,7 @@ val=[
 # cur.execute(sql, ("", "3", "연송고등학교", "2023-05-07 17:22:23", "2023-05-07 17:25:22"))
 
 cur.executemany(sql, val)
-con.commi
+con.commit()
 '''
 
 '''
