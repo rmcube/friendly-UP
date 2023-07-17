@@ -8,7 +8,7 @@ con = pymysql.connect(host='127.0.0.1', user='root', password='4235',
                      )
 cur = con.cursor()
 
-'''
+
 #user
 
 sql="insert into user (name, grade, school, created_at, updated_at) values(%s, %s, %s, %s, %s)"
@@ -31,7 +31,7 @@ cur.executemany(sql, val)
 con.commit()
 '''
 
-
+'''
 '''
 #user_info error
 sql="insert into user_info (user_id ,password, cash, prefer_subject, playtime, total_cash, date_sum, problem_num, problem_solved, created_at, updated_at, send_sum, share_sum) values(%s, %s, %s, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s)" 
@@ -79,7 +79,4 @@ cur.executemany(sql, val)
 con.commit()
 '''
 
-sql='select * from user'
-df=pd.read_sql(sql, con)
-print(df)
 con.close()

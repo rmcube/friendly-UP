@@ -11,7 +11,7 @@ cur = con.cursor()
 sql1="insert into user (name, grade, school, created_at, updated_at) values(%s, %s, %s, %s, %s)"
 sql2="insert into user_info(password, cash, prefer_subject, playtime, total_cash, date_sum, problem_sum, problem_solved, created_at, updated_at, send_sum, share_sum) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 
-print("asdf")
+print("asdf")           
 cur.execute("select password from user_info")
 
 
