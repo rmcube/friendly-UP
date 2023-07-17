@@ -1,5 +1,4 @@
 import pymysql
-import pandas as pd
 
 con = pymysql.connect(host='127.0.0.1', user='root', password='4235',
                       db='study_db_test', charset='utf8', # 한글처리 (charset = 'utf8')
@@ -28,7 +27,7 @@ val=[
 # cur.execute(sql, ("", "3", "연송고등학교", "2023-05-07 17:22:23", "2023-05-07 17:25:22"))
 
 cur.executemany(sql, val)
-con.commit()
+con.commi
 '''
 
 '''
