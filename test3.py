@@ -11,7 +11,7 @@ con = pymysql.connect(host='127.0.0.1', user='root', password='4235',
                      )
 
 # 회원 가입 엔드포인트
-@app.route('/api/user/signup', methods=['POST'])
+@app.route('/', methods=['POST'])
 def signup():
     data = request.get_json()
     name = data.get('name')

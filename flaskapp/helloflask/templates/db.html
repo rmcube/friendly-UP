@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<table>
+{% for member in user %}
+    <tr>
+        <td>{{ member.id }}</td>
+        <td>{{ member.name }}</td>
+        <td>{{ member.grade }}</td>
+        <td>{{ member.school }}</td>
+        <td>{{ member.created_at }}</td>
+        <td>{{ member.updated_at }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+</body>
+</html>

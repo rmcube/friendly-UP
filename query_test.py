@@ -1,4 +1,5 @@
 import pymysql
+import bcrypt
 
 con = pymysql.connect(host='127.0.0.1', user='root', password='4235',
                       db='study_db_test', charset='utf8', # 한글처리 (charset = 'utf8')
@@ -11,7 +12,8 @@ cur.execute(sql)
 result=cur.fetchall()
 passwordlist=[]
 for row in result:
-    passwordlist.append(row['password'])
+    print(row['password'])
+
 if 'asdfasdf' in passwordlist:
     print("OK")
 con.commit()
