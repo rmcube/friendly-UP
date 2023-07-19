@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from flask_mysqldb import MySQL
 
 app = Flask(__name__)
@@ -19,8 +19,14 @@ def index():
     cur.execute("SELECT * FROM user")
     data = cur.fetchall()
 
-    # 데이터를 HTML 템플릿에 전달하여 웹에 출력
-    return render_template("index.html", data=data)
+    # 데이터를 JSON 형태로 변환
+    json_data = []
+    for row in data:
+        column_names = [desc[0] for desc in cur.description]  # 열 이름 가져오기
+        json_data.append(dict(zip(column_names, row)))
+
+    # JSON 형태로 반환
+    return jsonify(json_data)
 
 
 if __name__ == "__main__":
