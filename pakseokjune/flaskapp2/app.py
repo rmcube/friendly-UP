@@ -5,7 +5,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 # Replace 'your_username', 'your_password', and 'your_database_name' with your MySQL credentials
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://localhost:3306:4235@localhost/study_db_test'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:4235@localhost/study_db_test'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
