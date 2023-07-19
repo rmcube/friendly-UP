@@ -9,9 +9,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:4235@localhost:330
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
-@app.route('/home')
-def home():
-    return render_template('home.html')
+
     
 @app.route("/one")
 def home():
