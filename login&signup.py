@@ -4,14 +4,17 @@ import pymysql
 app = Flask(__name__)
 
 # MySQL 데이터베이스 연결
-con = pymysql.connect(host='127.0.0.1', user='root', password='4235',
-                      db='study_db_test', charset='utf8', # 한글처리 (charset = 'utf8')
-                      autocommit=True, # 결과 DB 반영 (Insert or update)
-                      cursorclass=pymysql.cursors.DictCursor # DB조회시 컬럼명을 동시에 보여줌
-                     )
+conn = pymysql.connect(
+    host='localhost',
+    user='your_username',
+    password='your_password',
+    database='your_database',
+    charset='utf8mb4',
+    cursorclass=pymysql.cursors.DictCursor
+)
 
 # 회원 가입 엔드포인트
-@app.route('/', methods=['POST'])
+@app.route('/api/user/signup', methods=['POST'])
 def signup():
     data = request.get_json()
     name = data.get('name')
@@ -24,7 +27,9 @@ def signup():
     if name is None or grade is None or school is None or password is None or preferred_subject is None:
         return jsonify({'message': '모든 필드를 입력해야 합니다.'}), 400
 
-    try:
+    
+    
+    try:    
 
         return jsonify({'message': '회원 가입이 완료되었습니다.'}), 201
     except Exception as e:
@@ -53,6 +58,24 @@ def login():
 
         # 로그인 처리
         return jsonify({'message': 'success'}), 200
+    except Exception as e:
+        return jsonify({'message': str(e)}), 500
+    
+# 특정 유저의 정보 조회
+@app.route('/api/user/<int:user_id>', methods=['GET'])
+def get_user(user_id):
+    try:
+        # 데이터베이스에서 특정 유저 정보 조회
+        with conn.cursor() as cursor:
+            query = 'SELECT * FROM users WHERE id = %s'
+            cursor.execute(query, user_id)
+            user = cursor.fetchone()
+
+        if user is None:
+            return jsonify({'message': '해당 user_id에 해당하는 유저 정보가 없습니다.'}), 404
+
+        # 조회한 유저 정보 반환
+        return jsonify(user), 200
     except Exception as e:
         return jsonify({'message': str(e)}), 500
 

@@ -98,7 +98,7 @@ def update_user(user_id):
                 user['grade'] = data['grade']
             
             user['updatedAt'] = '2023-05-12'  # 업데이트된 날짜로 설정
-            return jsonify(userg), 200
+            return jsonify(user), 200
     
     return jsonify({'error': 'User not found'}), 404
 
