@@ -12,7 +12,7 @@ app.config["MYSQL_DB"] = "study_db_test"
 
 conn = MySQL(app)
 
-
+"""
 # 회원 가입 엔드포인트
 @app.route("/api/user/signup", methods=["POST"])
 def signup():
@@ -93,3 +93,4 @@ def get_user(user_id):
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=True)
+"""
