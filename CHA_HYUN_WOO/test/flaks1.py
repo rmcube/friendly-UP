@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
-from flask_mysqldb import MySQL, DictCursor
+from flask_mysqldb import MySQL
+from pymysql.cursors import DictCursor
 
 app = Flask(__name__)
 
