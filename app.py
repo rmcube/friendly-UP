@@ -96,6 +96,7 @@ def get_user_by_condition(school):
 if __name__ == '__main__':
    
     app.debug = True
-    app.run()
+    app.run(host='127.0.0.1', port=5000)
+
     
     
