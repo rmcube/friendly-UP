@@ -1,6 +1,6 @@
-from flask import Flask, request, jsonify
-import pymysql
+from flask import Flask, render_template, jsonify
 from flask_mysqldb import MySQL
+import pymysql
 
 app = Flask(__name__)
 
