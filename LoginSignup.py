@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, jsonify
 from flask_mysqldb import MySQL
 import pymysql
 
