@@ -1,17 +1,16 @@
 from flask import Flask, request, jsonify
 import pymysql
+from flask_mysqldb import MySQL
 
 app = Flask(__name__)
 
 # MySQL 데이터베이스 연결
-conn = pymysql.connect(
-    host="127.0.0.1",
-    user="root",
-    password="4235",
-    database="study_db_test",
-    charset="utf8mb4",
-    cursorclass=pymysql.cursors.DictCursor,
-)
+app.config["MYSQL_HOST"] = "127.0.0.1"
+app.config["MYSQL_USER"] = "root"
+app.config["MYSQL_PASSWORD"] = "4235"
+app.config["MYSQL_DB"] = "study_db_test"
+
+conn = MySQL(app)
 
 
 # 회원 가입 엔드포인트
