@@ -36,7 +36,7 @@ def signup():
         # 데이터베이스에 저장
         with conn.cursor() as cursor:
             query = "INSERT INTO user (name, grade, school, password, preferred_subject) VALUES (%s, %s, %s, %s, %s)"
-            conn.cursor.execute(query, (name, grade, school, password, preferred_subject))
+            cursor.execute(query, (name, grade, school, password, preferred_subject))
             conn.commit()
 
         return jsonify({"message": "회원 가입이 완료되었습니다."}), 201
@@ -59,8 +59,8 @@ def login():
         # 데이터베이스에서 사용자 정보 조회
         with conn.cursor() as cursor:
             query = "SELECT * FROM user WHERE name = %s"
-            conn.cursor.execute(query, name)
-            user = conn.cursor.fetchone()
+            cursor.execute(query, name)
+            user = cursor.fetchone()
 
         if user is None or user["password"] != password:
             return jsonify({"message": "이름/비밀번호가 형식에 맞지 않거나 존재하지 않습니다."}), 400
@@ -78,10 +78,8 @@ def get_user(user_id):
         # 데이터베이스에서 특정 유저 정보 조회
         with conn.cursor() as cursor:
             query = "SELECT * FROM user WHERE user_id = %s"
-            conn.cursor.execute(query, user_id)
-            for i in conn.cursor:
-                print(i)
-            user = conn.cursor.fetchone()
+            cursor.execute(query, user_id)
+            user = cursor.fetchone()
 
         if user is None:
             return jsonify({"message": "해당 user_id에 해당하는 유저 정보가 없습니다."}), 404
@@ -91,8 +89,5 @@ def get_user(user_id):
     except Exception as e:
         return jsonify({"message": str(e)}), 500
 
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
     
 
