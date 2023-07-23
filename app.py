@@ -11,11 +11,10 @@ app.config["MYSQL_PASSWORD"] = "4235"
 app.config["MYSQL_DB"] = "study_db_test"
 
 conn = pymysql.connect(
-    host=app.config["MYSQL_HOST"],
-    user=app.config["MYSQL_USER"],
-    password=app.config["MYSQL_PASSWORD"],
-    db=app.config["MYSQL_DB"],
-    charset="utf8",
+    host="127.0.0.1",
+    user="root",
+    password="4235",
+    db="study_db_test",
 )
 
 cur = conn.cursor()
