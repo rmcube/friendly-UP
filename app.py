@@ -54,7 +54,7 @@ def get_user(user_id):
     try:
         # 데이터베이스에서 특정 유저 정보 조회
 
-        query = "SELECT * FROM user WHERE id = %s"
+        query = "SELECT * FROM user WHERE user_id = %s"
         cur.execute(query, (user_id,))
         user = cur.fetchone()
 
