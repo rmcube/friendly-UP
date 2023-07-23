@@ -58,11 +58,11 @@ def get_user(user_id):
         cur.execute(query, (user_id,))
         user = cur.fetchone()
 
-        if user_id is None:
+        if user is None:
             return jsonify({"message": "해당 user_id에 해당하는 유저 정보가 없습니다."}), 404
 
         # 조회한 유저 정보 반환
-        return jsonify(user_id), 200
+        return jsonify(user), 200
     except Exception as e:
         return jsonify({"message": str(e)}), 500
 
