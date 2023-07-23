@@ -35,7 +35,7 @@ def signup():
     try:
         # 데이터베이스에 저장
         with conn.cursor() as cursor:
-            query = "INSERT INTO users (name, grade, school, password, preferred_subject) VALUES (%s, %s, %s, %s, %s)"
+            query = "INSERT INTO user (name, grade, school, password, preferred_subject) VALUES (%s, %s, %s, %s, %s)"
             cursor.execute(query, (name, grade, school, password, preferred_subject))
             conn.commit()
 
@@ -58,7 +58,7 @@ def login():
     try:
         # 데이터베이스에서 사용자 정보 조회
         with conn.cursor() as cursor:
-            query = "SELECT * FROM users WHERE name = %s"
+            query = "SELECT * FROM user WHERE name = %s"
             cursor.execute(query, name)
             user = cursor.fetchone()
 
