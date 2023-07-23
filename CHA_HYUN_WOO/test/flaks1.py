@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
-from flask_mysqldb import MySQL
-from pymysql.cursors import DictCursor
+import pymysql
+
+
 
 app = Flask(__name__)
 
@@ -10,8 +11,9 @@ app.config["MYSQL_USER"] = "root"
 app.config["MYSQL_PASSWORD"] = "4235"
 app.config["MYSQL_DB"] = "study_db_test"
 
-conn = MySQL(app)
+conn =pymysql.connect(host = app.config["MYSQL_HOST"], user = app.config["MYSQL_USER"], password = app.config["MYSQL_PASSWORD"], db = app.config["MYSQL_DB"], charset = "utf8")
 
+cur = conn.cursor()
 
 # 로그인 엔드포인트
 @app.route("/api/user/login", methods=["POST"])
@@ -26,10 +28,10 @@ def login():
 
     try:
         # 데이터베이스에서 사용자 정보 조회
-        with conn.cursor(cursorclass=DictCursor) as cursor:
-            query = "SELECT * FROM users WHERE name = %s"
-            cursor.execute(query, (name,))
-            user = cursor.fetchone()
+        
+        query = "SELECT * FROM users WHERE name = %s"
+        cur.execute(query, (name,))
+        user = cur.fetchone()
 
         if user is None or user["password"] != password:
             return jsonify({"message": "이름/비밀번호가 형식에 맞지 않거나 존재하지 않습니다."}), 400
@@ -45,10 +47,10 @@ def login():
 def get_user(user_id):
     try:
         # 데이터베이스에서 특정 유저 정보 조회
-        with conn.cursor(cursorclass=DictCursor) as cursor:
-            query = "SELECT * FROM users WHERE id = %s"
-            cursor.execute(query, (user_id,))
-            user = cursor.fetchone()
+        
+        query = "SELECT * FROM users WHERE id = %s"
+        cur.execute(query, (user_id,))
+        user = curs.fetchone()
 
         if user is None:
             return jsonify({"message": "해당 user_id에 해당하는 유저 정보가 없습니다."}), 404
