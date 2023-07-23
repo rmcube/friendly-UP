@@ -35,7 +35,7 @@ def login():
     try:
         # 데이터베이스에서 사용자 정보 조회
 
-        query = "SELECT * FROM users WHERE name = %s"
+        query = "SELECT * FROM user WHERE name = %s"
         cur.execute(query, (name,))
         user = cur.fetchone()
 
@@ -54,7 +54,7 @@ def get_user(user_id):
     try:
         # 데이터베이스에서 특정 유저 정보 조회
 
-        query = "SELECT * FROM users WHERE id = %s"
+        query = "SELECT * FROM user WHERE id = %s"
         cur.execute(query, (user_id,))
         user = cur.fetchone()
 
