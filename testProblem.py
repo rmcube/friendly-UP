@@ -28,6 +28,9 @@ def get_user_problems():
     # 클라이언트에서 로그인된 유저의 정보를 전달받음
     user_info = request.get_json()
 
+    if user_info is None: 
+        return jsonify({"message": "로그인이 되어 있지 않습니다."}), 401
+    
     # 로그인된 유저의 학년, 학교, 선호과목 정보 가져오기
     grade = user_info.get("grade")
     school = user_info.get("school")
