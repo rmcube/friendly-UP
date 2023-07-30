@@ -18,47 +18,36 @@ app.config["MYSQL_DB"] = "study_db_test"
 conn = pymysql.connect(**app.config)
 cursor = conn.cursor()
 
-# 학력과 선호 과목을 고려하여 랜덤으로 문제 제공
-@app.route("/api/problems/user", methods=["GET"])
-def get_problems():
-    data = request.get_json()
-    school_type = data.get("school_type")
-    grade = data.get("grade")
-    preferred_subject = data.get("preferred_subject")
+# 로그인된 유저의 정보를 기반으로 문제를 랜덤으로 제공
+@app.route("/api/user/problems", methods=["GET"])
+def get_user_problems():
+    
+    # 클라이언트에서 로그인된 유저의 정보를 전달받음
+    user_info = request.get_json()
 
-    if school_type is None or grade is None or preferred_subject is None:
-        return jsonify({"message": "학교, 학년, 선호 과목 정보를 모두 입력해야 합니다."}), 400
+    # 로그인된 유저의 학년, 학교, 선호과목 정보 가져오기
+    grade = user_info.get("grade")
+    school = user_info.get("school")
+    preferred_subject = user_info.get("preferred_subject")
 
-    try:
-        # 해당 학교, 학년, 선호 과목에 맞는 유저 정보 조회
-        with conn.cursor() as cursor:
-            query = "SELECT * FROM user WHERE school_type = %s AND grade = %s AND preferred_subject = %s"
-            cursor.execute(query, (school_type, grade, preferred_subject))
-            user = cursor.fetchall()
+    # 유저의 학년, 학교, 선호과목 정보를 기반으로 문제 조회
+    with conn.cursor() as cursor:
+        query = "SELECT * FROM problems WHERE category = %s AND subject = %s"
+        cursor.execute(query, (f"{school} {grade}", preferred_subject))
+        problems = cursor.fetchall()
 
-        if not user:
-            return jsonify({"message": "해당 학교, 학년, 선호 과목에 맞는 유저 정보가 존재하지 않습니다."}), 404
+    # 랜덤으로 문제 선택
+    selected_problem = random.choice(problems)
 
-        # 랜덤으로 유저 선택
-        selected_user = random.choice(user)
-
-        # 선택한 유저 정보를 기반으로 문제 선택
-        with conn.cursor() as cursor:
-            query = "SELECT * FROM problems WHERE category LIKE %s AND subject = %s"
-            cursor.execute(query, (f"%{selected_user['school_type']} {selected_user['grade']}%", selected_user['preferred_subject']))
-            problems = cursor.fetchall()
-
-        if not problems:
-            return jsonify({"message": "해당 학년, 학교, 선호 과목에 맞는 문제가 존재하지 않습니다."}), 404
-
-        # 랜덤으로 문제 선택
-        selected_problem = random.choice(problems)
-
-        # 선택한 문제 반환
-        return jsonify(selected_problem), 200
-    except Exception as e:
-        return jsonify({"message": str(e)}), 500
-
+    # 선택한 문제 반환
+    return jsonify(selected_problem), 200
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=True)
+
+'''
+(현재 로그인 되어 있는 유저의 정보에서 그 유저의 개인정보에 있는 학년,학교,선호과목을
+읽고 이에 맞는 데이터베이스의 문제를 랜덤으로 가저온다.)
+if __name__ == "__main__":
+    app.run(host="127.0.0.1", port=5000, debug=True)
+'''
