@@ -15,7 +15,10 @@ app.config["MYSQL_USER"] = "root"
 app.config["MYSQL_PASSWORD"] = "4235"
 app.config["MYSQL_DB"] = "study_db_test"
 
-conn = pymysql.connect(**app.config)
+conn = pymysql.connect(
+    host = app.config["MYSQL_HOST"], user=app.config["MYSQL_USER"], 
+    db=app.config["MYSQL_DB"], password=app.config["MYSQL_PASSWORD"])
+
 cursor = conn.cursor()
 
 # 로그인된 유저의 정보를 기반으로 문제를 랜덤으로 제공
