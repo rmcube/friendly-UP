@@ -2,6 +2,10 @@ from flask import Flask, jsonify, request
 import pymysql
 
 
+from query import query
+
+
+
 app = Flask(__name__)
 
 # MySQL 설정
@@ -34,7 +38,7 @@ def login():
     try:
         # 데이터베이스에서 사용자 정보 조회
 
-        query = "SELECT * FROM user WHERE name = %s"
+        query = query.GetUser
         cur.execute(query, (name,))
         user = cur.fetchone()
 
@@ -53,7 +57,7 @@ def get_user(user_id):
     try:
         # 데이터베이스에서 특정 유저 정보 조회
 
-        query = "SELECT * FROM user WHERE user_id = %s"
+        query = query.GetUser
         cur.execute(query, (user_id,))
         user = cur.fetchone()
 

@@ -29,8 +29,6 @@ SolvedSumBySubject = 'select count(*) from solved where subject=%s and user_id=%
 #과목별 푼 문제수(subject(text), user_id(int))
 ProblemNumBySubject = 'select count(*) from solved where subject=%s and user_id=%s'
 
-#과목별 정답률
-CorrectAnswerRateBySubject 
 
 #과목별 문제 불러오기 (subject, text)
 ProblemsBySubject = 'select * from problems where subject=%s'
@@ -50,8 +48,8 @@ PlusDateSum = 'update user_info set date_sum=date_sum+1'
 #alram 삭제(user, int)
 DeleteAlarm = 'delete from alarm where user_id=%s'
 
-
-
+#user, ALL
+GetUser = "SELECT * FROM user WHERE name = %s"
 
 
 
