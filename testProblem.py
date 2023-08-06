@@ -4,6 +4,7 @@
 즉 서버에게 데이터베이스에 학력에 맞는 문제를 보내달라하는 요청을 만들어야한다.
 '''
 from flask import Flask, request, jsonify
+import query.query
 import pymysql
 import random
 
@@ -39,6 +40,7 @@ def get_user_problems():
     # 유저의 학년, 학교, 선호과목 정보를 기반으로 문제 조회
     with conn.cursor() as cursor:
         query = "SELECT * FROM problems WHERE category = %s AND subject = %s"
+        # 이부분 해결해야 할 듯
         cursor.execute(query, (f"{school} {grade}", preferred_subject))
         problems = cursor.fetchall()
 
