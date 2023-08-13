@@ -1,15 +1,14 @@
 from flask import Flask, jsonify, request
 import pymysql
 import os
-
-
+from dotenv import load_dotenv
 from query import query
 
+load_dotenv()
 
 app = Flask(__name__)
 
 # MySQL 설정
-
 db_host = os.getenv("DB_HOST")
 db_user = os.getenv("DB_USER")
 db_password = os.getenv("DB_PASSWORD")
@@ -38,9 +37,9 @@ def login():
     try:
         # 데이터베이스에서 사용자 정보 조회
 
-        query = query.GetUser
+        query_string = query.GetUser
         with conn.cursor() as cur:
-            cur.execute(query, (name,))
+            cur.execute(query_string, (name,))
             user = cur.fetchone()
 
         if user is None or user["password"] != password:
@@ -58,9 +57,9 @@ def get_user(user_id):
     try:
         # 데이터베이스에서 특정 유저 정보 조회
 
-        query = query.GetUser
+        query_string = query.GetUserById
         with conn.cursor() as cur:
-            cur.execute(query, (user_id,))
+            cur.execute(query_string, (user_id,))
             user = cur.fetchone()
 
         if user is None:
