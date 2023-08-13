@@ -3,12 +3,10 @@ import pymysql
 import os
 from dotenv import load_dotenv
 
-<<<<<<< HEAD
-# from query.query import 
-from LoginSignup import login_routes
-=======
-load_dotenv()
->>>>>>> refs/remotes/origin/main
+
+from query import query
+
+
 
 app = Flask(__name__)
 
@@ -17,25 +15,14 @@ db_host = os.getenv("DB_HOST")
 db_user = os.getenv("DB_USER")
 db_password = os.getenv("DB_PASSWORD")
 
-<<<<<<< HEAD
-app.config["DB_CONNECTION"] = {
-    "host":app.config["MYSQL_HOST"],
-    "user":app.config["MYSQL_USER"],
-    "password":app.config["MYSQL_PASSWORD"],
-    "db":app.config["MYSQL_DB"]
-}
-
-conn = pymysql.connect(**app.config["DB_CONNECTION"])
-=======
 conn = pymysql.connect(
-    host=db_host,
-    user=db_user,
-    password=db_password,
+    host="127.0.0.1",
+    user="root",
+    password="4235",
     db="study_db_test",
-    charset="utf8mb4",
-    cursorclass=pymysql.cursors.DictCursor,
 )
->>>>>>> refs/remotes/origin/main
+
+cur = conn.cursor()
 
 
 app.register_blueprint(login_routes)
