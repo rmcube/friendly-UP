@@ -4,3 +4,4 @@ __pycache/
 d.dSYM/
 flask_test/
 pakseokjune/
+.env
