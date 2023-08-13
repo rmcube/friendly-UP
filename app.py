@@ -1,27 +1,32 @@
 from flask import Flask, jsonify, request
 import pymysql
+import os
 
 
 from query import query
 
 
-
 app = Flask(__name__)
 
 # MySQL 설정
-app.config["MYSQL_HOST"] = "127.0.0.1"
-app.config["MYSQL_USER"] = "root"
-app.config["MYSQL_PASSWORD"] = "4235"
-app.config["MYSQL_DB"] = "study_db_test"
+
+db_host = os.getenv("DB_HOST")
+db_user = os.getenv("DB_USER")
+db_password = os.getenv("DB_PASSWORD")
+
+app.config["MYSQL_HOST"] = db_host  # MySQL 호스트
+app.config["MYSQL_USER"] = db_user  # MySQL 사용자 ID
+app.config["MYSQL_PASSWORD"] = db_password  # MySQL 사용자 비밀번호
+app.config["MYSQL_DB"] = "study_db_test"  # MySQL 사용할 데이터베이스 이름
 
 conn = pymysql.connect(
-    host="127.0.0.1",
-    user="root",
-    password="4235",
+    host=db_host,
+    user=db_user,
+    password=db_password,
     db="study_db_test",
+    charset="utf8mb4",
+    cursorclass=pymysql.cursors.DictCursor,
 )
-
-cur = conn.cursor()
 
 
 # 로그인 엔드포인트
@@ -39,8 +44,9 @@ def login():
         # 데이터베이스에서 사용자 정보 조회
 
         query = query.GetUser
-        cur.execute(query, (name,))
-        user = cur.fetchone()
+        with conn.cursor() as cur:
+            cur.execute(query, (name,))
+            user = cur.fetchone()
 
         if user is None or user["password"] != password:
             return jsonify({"message": "이름/비밀번호가 형식에 맞지 않거나 존재하지 않습니다."}), 400
@@ -58,14 +64,15 @@ def get_user(user_id):
         # 데이터베이스에서 특정 유저 정보 조회
 
         query = query.GetUser
-        cur.execute(query, (user_id,))
-        user = cur.fetchone()
+        with conn.cursor() as cur:
+            cur.execute(query, (user_id,))
+            user = cur.fetchone()
 
         if user is None:
-            return jsonify({"message": "해당 user_id에 해당하는 유저 정보가 없습니다."}), 1004
+            return jsonify({"message": "해당 user_id에 해당하는 유저 정보가 없습니다."}), 404
 
         # 조회한 유저 정보 반환
-        return jsonify(user_id), 200
+        return jsonify(user), 200
     except Exception as e:
         return jsonify({"message": str(e)}), 500
 
