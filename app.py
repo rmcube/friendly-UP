@@ -14,11 +14,6 @@ db_host = os.getenv("DB_HOST")
 db_user = os.getenv("DB_USER")
 db_password = os.getenv("DB_PASSWORD")
 
-app.config["MYSQL_HOST"] = db_host  # MySQL 호스트
-app.config["MYSQL_USER"] = db_user  # MySQL 사용자 ID
-app.config["MYSQL_PASSWORD"] = db_password  # MySQL 사용자 비밀번호
-app.config["MYSQL_DB"] = "study_db_test"  # MySQL 사용할 데이터베이스 이름
-
 conn = pymysql.connect(
     host=db_host,
     user=db_user,
