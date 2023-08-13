@@ -1,10 +1,8 @@
 from flask import Flask, jsonify, request
 import pymysql
 
-
-from query import query
-
-
+# from query.query import 
+from LoginSignup import login_routes
 
 app = Flask(__name__)
 
@@ -14,15 +12,19 @@ app.config["MYSQL_USER"] = "root"
 app.config["MYSQL_PASSWORD"] = "4235"
 app.config["MYSQL_DB"] = "study_db_test"
 
-conn = pymysql.connect(
-    host="127.0.0.1",
-    user="root",
-    password="4235",
-    db="study_db_test",
-)
+app.config["DB_CONNECTION"] = {
+    "host":app.config["MYSQL_HOST"],
+    "user":app.config["MYSQL_USER"],
+    "password":app.config["MYSQL_PASSWORD"],
+    "db":app.config["MYSQL_DB"]
+}
+
+conn = pymysql.connect(**app.config["DB_CONNECTION"])
 
 cur = conn.cursor()
 
+
+app.register_blueprint(login_routes)
 
 # 로그인 엔드포인트
 @app.route("/api/user/login", methods=["POST"])

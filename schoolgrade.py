@@ -1,16 +1,18 @@
-from flask import Flask, request
+from flask import Flask, request, Blueprint, current_app
 from query.user import getUsers
+import pymysql
 
-app = Flask(__name__)
+school_routes = Blueprint("routes", __name__)
 
+cur = pymysql.connect(**current_app["DB_CONNECTION"])
 
-@app.route("/users/<user_id>", methods=["GET"])
+school_routes("/users/<user_id>", methods=["GET"])
 def show_user_profile(user_id):
     # show the user profile for that user
     return "User %s" % user_id
 
 
-@app.route("/users")
+school_routes("/users")
 def get_users_by_condition():
     name = request.args.get("name")
     school = request.args.get("school")
@@ -38,7 +40,7 @@ def get_users_by_condition():
     return "User %s" % name
 
 
-@app.route("/users/by/grade", methods=["GET"])
+school_routes("/users/by/grade", methods=["GET"])
 def get_user_by_grade():
     school = request.args.get("school")
     grade = request.args.get("grade")
@@ -67,7 +69,7 @@ def get_user_by_grade():
     return "users %s" % grade
 
 
-@app.route("/users/by/school", methods=["GET"])
+school_routes("/users/by/school", methods=["GET"])
 def get_user_by_school():
     school = request.args.get("school")
 
@@ -93,5 +95,4 @@ def get_user_by_school():
     return "users %s" % school
 
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+

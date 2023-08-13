@@ -3,11 +3,12 @@
 유저 정보에서 (초,중,고등)학교, (1~6)학년, 선호 과목을 통해 각각의 유저의 선호 과목과 학년에 맞는 문제를 데이터베이스 안에서 랜덤으로 준다.  
 즉 서버에게 데이터베이스에 학력에 맞는 문제를 보내달라하는 요청을 만들어야한다.
 '''
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Blueprint
 import query.query
 import pymysql
 import random
 
+problem_routes = Blueprint("member", __name__, url_prefix='/api/user')
 app = Flask(__name__)
 
 # MySQL 데이터베이스 연결
@@ -50,8 +51,6 @@ def get_user_problems():
     # 선택한 문제 반환
     return jsonify(selected_problem), 200
 
-if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5000, debug=True)
 
 '''
 (현재 로그인 되어 있는 유저의 정보에서 그 유저의 개인정보에 있는 학년,학교,선호과목을

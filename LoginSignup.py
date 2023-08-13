@@ -1,19 +1,23 @@
-from flask import Flask, jsonify,request
-from flask_mysqldb import MySQL
+from flask import Flask, jsonify,request, Blueprint
 import pymysql
 
-app = Flask(__name__)
+login_routes = Blueprint("member", __name__, url_prefix='/api/user')
 
-# MySQL 데이터베이스 연결
-app.config["MYSQL_HOST"] = "127.0.0.1"
-app.config["MYSQL_USER"] = "root"
-app.config["MYSQL_PASSWORD"] = "4235"
-app.config["MYSQL_DB"] = "study_db_test"
+# MySQL 설정
+db_connection = {
+    "host":"127.0.0.1",
+    "user":"root",
+    "password":"4235",
+    "db":"study_db_test"
+}
 
-conn = MySQL(app)
+conn = pymysql.connect(host = db_connection["host"],
+                       user = db_connection["user"],
+                       password=db_connection["password"],
+                       db = db_connection["db"] )
 
 # 회원 가입 엔드포인트
-@app.route("/api/user/signup", methods=["POST"])
+@login_routes.route("/signup", methods=["POST"])
 def signup():
     data = request.get_json()
     name = data.get("name")
@@ -45,7 +49,7 @@ def signup():
 
 
 # 로그인 엔드포인트
-@app.route("/api/user/login", methods=["POST"])
+@login_routes.route("/api/user/login", methods=["POST"])
 def login():
     data = request.get_json()
     name = data.get("name")
@@ -72,7 +76,7 @@ def login():
 
 
 # 특정 유저의 정보 조회
-@app.route("/api/user/<int:user_id>", methods=["GET"])
+@login_routes.route("/api/user/<int:user_id>", methods=["GET"])
 def get_user(user_id):
     try:
         # 데이터베이스에서 특정 유저 정보 조회

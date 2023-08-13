@@ -36,7 +36,7 @@ ProblemsBySubject = 'select * from problems where subject=%s'
 #cash변동 (user_id, 변동할 양)int
 a=10
 cash='select cash from user_info where user=%d'
-cash+=a
+
 UpdateCash = 'update user_info set cash=%d where user_id=%d'
 
 #totalcash 증가 (user_id, 증가할 값)int
