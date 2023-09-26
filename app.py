@@ -3,10 +3,7 @@ import pymysql
 import os
 from dotenv import load_dotenv
 
-
-from query import query
-
-
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -16,16 +13,14 @@ db_user = os.getenv("DB_USER")
 db_password = os.getenv("DB_PASSWORD")
 
 conn = pymysql.connect(
-    host="127.0.0.1",
-    user="root",
-    password="4235",
+    host=db_host,
+    user=db_user,
+    password=db_password,
     db="study_db_test",
+    charset="utf8mb4",
+    cursorclass=pymysql.cursors.DictCursor,
 )
 
-cur = conn.cursor()
-
-
-app.register_blueprint(login_routes)
 
 # 로그인 엔드포인트
 @app.route("/api/user/login", methods=["POST"])
