@@ -1,15 +1,19 @@
 import pymysql
 from flask import Blueprint
 
-conn = pymysql.connect(host='127.0.0.1', user='root', password='4235',
-                      db='study_db_test', charset='utf8', # 한글처리 (charset = 'utf8')
-                      autocommit=True, # 결과 DB 반영 (Insert or update)
-                      cursorclass=pymysql.cursors.DictCursor # DB조회시 컬럼명을 동시에 보여줌
-                     )
+conn = pymysql.connect(
+    host="127.0.0.1",
+    user="root",
+    password="4235",
+    db="study_db_test",
+    charset="utf8",  # 한글처리 (charset = 'utf8')
+    autocommit=True,  # 결과 DB 반영 (Insert or update)
+    cursorclass=pymysql.cursors.DictCursor,  # DB조회시 컬럼명을 동시에 보여줌
+)
 cur = conn.cursor()
 
 # user 테이블 생성 쿼리 실행
-sql1 = '''
+sql1 = """
     CREATE TABLE alarm (
         alarm_id INT NOT NULL AUTO_INCREMENT,
         msg VARCHAR(1000) DEFAULT NULL,
@@ -23,10 +27,10 @@ sql1 = '''
         CONSTRAINT alarm_ibfk_1 FOREIGN KEY (user_id) REFERENCES user (user_id),
         CONSTRAINT alarm_ibfk_2 FOREIGN KEY (send_id) REFERENCES user (user_id)
     ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
-'''
+"""
 
 # friends 테이블 생성 쿼리 실행
-sql2 = '''
+sql2 = """
     CREATE TABLE friends (
         relation_id INT NOT NULL AUTO_INCREMENT,
         user_id2 INT NOT NULL,
@@ -39,10 +43,10 @@ sql2 = '''
         CONSTRAINT friends_ibfk_1 FOREIGN KEY (user_id2) REFERENCES user (user_id),
         CONSTRAINT friends_ibfk_2 FOREIGN KEY (user_id3) REFERENCES user (user_id)
     ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
-'''
+"""
 
 # problems 테이블 생성 쿼리 실행
-sql3 = '''
+sql3 = """
     CREATE TABLE problems (
         problem_id INT NOT NULL AUTO_INCREMENT,
         difficulty INT NOT NULL,
@@ -53,10 +57,10 @@ sql3 = '''
         updated_at DATETIME NOT NULL,
         PRIMARY KEY (problem_id)
     ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
-'''
+"""
 
 # solved 테이블 생성 쿼리 실행
-sql4 = '''
+sql4 = """
     CREATE TABLE solved (
         solved_id INT NOT NULL AUTO_INCREMENT,
         user_id INT NOT NULL,
@@ -73,11 +77,11 @@ sql4 = '''
         CONSTRAINT solved_ibfk_1 FOREIGN KEY (user_id) REFERENCES user (user_id),
         CONSTRAINT solved_ibfk_2 FOREIGN KEY (problem_id2) REFERENCES problems (problem_id)
     ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
-'''
+"""
 
 # user 테이블 생성 쿼리 실행
-sql5 = '''
-    CREATE TABLE `user` (
+sql5 = """
+    CREATE TABLE user (
   `user_id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   `grade` int NOT NULL,
@@ -96,8 +100,8 @@ sql5 = '''
   `share_sum` int NULL,
   PRIMARY KEY (`user_id`)
 ) 
-'''
-
+"""
+cur.execute("""CREATE DATABASE study_db_test""")
 # 각 테이블 생성 쿼리 실행
 for sql in [sql5, sql1, sql2, sql3, sql4]:
     if cur.execute("SHOW TABLES LIKE " + "'" + sql.split()[2] + "'") == 0:
