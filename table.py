@@ -1,6 +1,6 @@
 import pymysql
+from flask import Blueprint
 
-# MySQL 서버에 연결
 conn = pymysql.connect(host='127.0.0.1', user='root', password='4235',
                       db='study_db_test', charset='utf8', # 한글처리 (charset = 'utf8')
                       autocommit=True, # 결과 DB 반영 (Insert or update)
@@ -77,40 +77,29 @@ sql4 = '''
 
 # user 테이블 생성 쿼리 실행
 sql5 = '''
-    CREATE TABLE user (
-        user_id INT NOT NULL AUTO_INCREMENT,
-        name VARCHAR(50) DEFAULT NULL,
-        grade INT NOT NULL,
-        school VARCHAR(50) DEFAULT NULL,
-        created_at DATETIME NOT NULL,
-        updated_at DATETIME NOT NULL,
-        PRIMARY KEY (user_id)
-    ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
-'''
-
-# user_info 테이블 생성 쿼리 실행
-sql6 = '''
-    CREATE TABLE user_info (
-        user_id INT NOT NULL,
-        password VARCHAR(100) DEFAULT NULL,
-        cash INT NOT NULL,
-        prefer_subject VARCHAR(50) DEFAULT NULL,
-        playtime TIME NOT NULL,
-        total_cash INT NOT NULL,
-        date_sum INT NOT NULL,
-        problem_num INT NOT NULL,
-        problem_solved INT NOT NULL,
-        created_at DATETIME NOT NULL,
-        updated_at DATETIME NOT NULL,
-        send_sum INT NOT NULL,
-        share_sum INT NOT NULL,
-        KEY user_id (user_id),
-        CONSTRAINT user_info_ibfk_1 FOREIGN KEY (user_id) REFERENCES user (user_id)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+    CREATE TABLE `user` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `grade` int NOT NULL,
+  `school` varchar(50) DEFAULT NULL,    
+  `password` varchar(100) DEFAULT NULL,
+  `cash` int NULL,
+  `prefer_subject` varchar(50) DEFAULT NULL,
+  `playtime` time NULL,
+  `total_cash` int NULL,
+  `date_sum` int NULL,
+  `problem_num` int NULL,
+  `problem_solved` int NULL,
+  `created_at` datetime NULL,
+  `updated_at` datetime NULL,
+  `send_sum` int NULL,
+  `share_sum` int NULL,
+  PRIMARY KEY (`user_id`)
+) 
 '''
 
 # 각 테이블 생성 쿼리 실행
-for sql in [sql5, sql1, sql2, sql3, sql4, sql6]:
+for sql in [sql5, sql1, sql2, sql3, sql4]:
     if cur.execute("SHOW TABLES LIKE " + "'" + sql.split()[2] + "'") == 0:
         cur.execute(sql)
         print(f"{sql.split()[2]} 테이블이 생성되었습니다.")

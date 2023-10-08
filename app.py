@@ -3,10 +3,8 @@ import pymysql
 import os
 from dotenv import load_dotenv
 
-
+from LoginSignup import login_routes
 from query import query
-
-
 
 app = Flask(__name__)
 
@@ -23,7 +21,6 @@ conn = pymysql.connect(
 )
 
 cur = conn.cursor()
-
 
 app.register_blueprint(login_routes)
 
@@ -46,7 +43,7 @@ def login():
             cur.execute(query_string, (name,))
             user = cur.fetchone()
 
-        if user is None or user["password"] != password:
+        if user is None or user[4] != password:
             return jsonify({"message": "이름/비밀번호가 형식에 맞지 않거나 존재하지 않습니다."}), 400
 
         # 로그인 처리

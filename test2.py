@@ -46,18 +46,6 @@ def get_users():
 
     return jsonify(filtered_users), 200
 
-
-
-
-# 1. GET /user/{user_id}  조회 시  users 리스트에서 해당 user_id를 가진 유저 탐색해서 넘겨주기, user_id가 존재하지 않으면 오류 메세지 넘겨주기:clear!
-# 2. GET /users?name={name}&grade={grade}&school={school}로 넘겨 주면
-#    이름 안에 {name}이 포함되어 있고, 학교 이름 안에 {school}이 포함되어 있고, 학년이 {grade} 이상인 모든 유저 정보를 리스트로 담아서 반환하기:clear!
-# 3. POST /user + body에 name, school, grade을 넘겨서 보내면 user_id, createdAt, updatedAt 필드를 추가적으로 생성하여 user 리스트 안에 추가하기
-#    만약 하나의 필드라도 존재하지 않으면 오류 메세지 넘겨주기:claer!
-# 4. Delete /user/{user_id} 요청 시 해당 user_id에 해당하는 데이터 삭제, user_id가 존재하지 않으면 오류 메세지 넘겨주기:clear!
-# 5. PUT /user/{user_id} + body에 name, school, grade에 해당하는 정보가 담겨 있으면 해당 user_id를 가진 유저 데이터를 필드에 맞게 수정:claer?
-
-
 if __name__ == '__main__':
    
     app.debug = True

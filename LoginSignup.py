@@ -1,6 +1,7 @@
 from flask import Flask, jsonify,request, Blueprint
 import pymysql
 
+#blueprint는 메인(app.py)로 다른 파일들(class)를 묶어주는 역할을 한다
 login_routes = Blueprint("member", __name__, url_prefix='/api/user')
 
 # MySQL 설정
@@ -24,7 +25,7 @@ def signup():
     grade = data.get("grade")
     school = data.get("school")
     password = data.get("password")
-    preferred_subject = data.get("preferred_subject")
+    prefer_subject = data.get("prefer_subject")
 
     # 필수 필드 확인
     if (
@@ -32,15 +33,15 @@ def signup():
         or grade is None
         or school is None
         or password is None
-        or preferred_subject is None
+        or prefer_subject is None
     ):
         return jsonify({"message": "모든 필드를 입력해야 합니다."}), 400
 
     try:
         # 데이터베이스에 저장
         with conn.cursor() as cursor:
-            query = "INSERT INTO user (name, grade, school, password, preferred_subject) VALUES (%s, %s, %s, %s, %s)"
-            cursor.execute(query, (name, grade, school, password, preferred_subject))
+            query = "INSERT INTO user (name, grade, school, password, prefer_subject) VALUES (%s, %s, %s, %s, %s)"
+            cursor.execute(query, (name, grade, school, password, prefer_subject))
             conn.commit()
 
         return jsonify({"message": "회원 가입이 완료되었습니다."}), 201
@@ -93,5 +94,4 @@ def get_user(user_id):
     except Exception as e:
         return jsonify({"message": str(e)}), 500
 
-    
-
+'''유저 정보가 만들어지면 서버에서 정보안에 보유한 캐시,플레이타임이 적히도록 추가할 것'''

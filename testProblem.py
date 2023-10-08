@@ -44,7 +44,9 @@ def get_user_problems():
         # 이부분 해결해야 할 듯!
         cursor.execute(query, (f"{school} {grade}", preferred_subject))
         problems = cursor.fetchall()
-
+    '''
+    난이도 라는 것도 추가해서 오직 난이도 1만 개념 문제로 나오도록 수정해야 함, 이후 문제,정답,선택 1, 선택 2, 선택 3 을 불러와야함
+    '''
     # 랜덤으로 문제 선택
     selected_problem = random.choice(problems)
 

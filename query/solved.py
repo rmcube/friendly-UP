@@ -8,4 +8,4 @@ SolvedSumBySubject = 'select count(*) from solved where subject=%s and user_id=%
 ProblemNumBySubject = 'select count(*) from solved where subject=%s and user_id=%s'
 
 #과목별 정답률
-CorrectAnswerRateBySubject 
+# CorrectAnswerRateBySubject 
