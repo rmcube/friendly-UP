@@ -16,21 +16,17 @@ db_user = os.getenv("DB_USER")
 db_password = os.getenv("DB_PASSWORD")
 
 
-conn = pymysql.connect(
-    host=db_host,
-    user=db_user,
-    password=db_password,
-    db="study_db_test",
-    charset="utf8mb4",
-    cursorclass=pymysql.cursors.DictCursor,
-)
+def get_db_connection():
+    return pymysql.connect(
+        host=db_host,
+        user=db_user,
+        password=db_password,
+        db="study_db_test",
+        charset="utf8mb4",
+        cursorclass=pymysql.cursors.DictCursor,
+    )
 
 
-def MySQL():
-    cur = conn.cursor()
-
-
-MySQL()
 app.register_blueprint(login_routes)
 
 
@@ -66,20 +62,26 @@ def login():
 @app.route("/api/user/<int:user_id>", methods=["GET"])
 def get_user(user_id):
     try:
-        # 데이터베이스에서 특정 유저 정보 조회
-        MySQL()
+        # 데이터베이스 연결 및 쿼리 실행
+        conn = get_db_connection()
+
         query_string = query.GetUser
+
         with conn.cursor() as cur:
             cur.execute(query_string, (user_id,))
             user = cur.fetchone()
 
-        if user is None:
-            return jsonify({"message": "해당 user_id에 해당하는 유저 정보가 없습니다."}), 404
+            if user is None:
+                return jsonify({"message": "해당 user_id에 해당하는 유저 정보가 없습니다."}), 404
 
-        # 조회한 유저 정보 반환
-        return jsonify(user), 200
+            # 조회한 유저 정보 반환
+            return jsonify(user), 200
+
     except Exception as e:
         return jsonify({"message": str(e)}), 500
+
+    finally:
+        conn.close()
 
 
 if __name__ == "__main__":
