@@ -33,6 +33,7 @@ app.register_blueprint(login_routes)
 # 로그인 엔드포인트
 @app.route("/api/user/login", methods=["POST"])
 def login():
+    conn = get_db_connection()
     data = request.get_json()
     name = data.get("name")
     password = data.get("password")
@@ -43,7 +44,6 @@ def login():
 
     try:
         # 데이터베이스에서 사용자 정보 조회
-
         query_string = query.GetUser
         with conn.cursor() as cur:
             cur.execute(query_string, (name,))
