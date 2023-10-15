@@ -49,7 +49,7 @@ def login():
             cur.execute(query_string, (name,))
             user = cur.fetchone()
 
-            if user is None or user["password"] != password:
+            if user is None or user["password"] != str(password):
                 return (
                     jsonify(
                         {
