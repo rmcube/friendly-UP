@@ -44,6 +44,15 @@ def signup():
             cursor.execute(query, (name, grade, school, password, prefer_subject))
             conn.commit()
 
+        # with conn.cursor() as cursor:
+        #     sql = "SELECT * FROM user"
+        #     cursor.execute(sql)
+        #     result = cursor.fetchall()
+        #     print(cursor.rowcount)
+        #     print(result)
+        
+        
+        
         return jsonify({"message": "회원 가입이 완료되었습니다."}), 201
     except Exception as e:
         return jsonify({"message": str(e)}), 500

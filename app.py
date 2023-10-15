@@ -16,18 +16,15 @@ db_user = os.getenv("DB_USER")
 db_password = os.getenv("DB_PASSWORD")
 
 
-def MySQL():
-    conn = pymysql.connect(
-        host=db_host,
-        user=db_user,
-        password=db_password,
-        db="study_db_test",
-        charset="utf8mb4",
-        cursorclass=pymysql.cursors.DictCursor,
-    )
+conn = pymysql.connect(
+    host=db_host,
+    user=db_user,
+    password=db_password,
+    db="study_db_test",
+    charset="utf8mb4",
+    cursorclass=pymysql.cursors.DictCursor,
+)
 
-
-MySQL()
 cur = conn.cursor()
 
 app.register_blueprint(login_routes)
@@ -66,7 +63,6 @@ def login():
 def get_user(user_id):
     try:
         # 데이터베이스에서 특정 유저 정보 조회
-        MySQL()
         query_string = query.GetUser
         with conn.cursor() as cur:
             cur.execute(query_string, (user_id,))
@@ -79,6 +75,7 @@ def get_user(user_id):
         return jsonify(user), 200
     except Exception as e:
         return jsonify({"message": str(e)}), 500
+
 
 
 if __name__ == "__main__":
