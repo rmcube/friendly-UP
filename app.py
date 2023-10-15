@@ -44,7 +44,7 @@ def login():
 
     try:
         # 데이터베이스에서 사용자 정보 조회
-        query_string = GetUserName
+        query_string = query.GetUserName
         with conn.cursor() as cur:
             cur.execute(query_string, (name,))
             user = cur.fetchone()
