@@ -21,6 +21,7 @@ conn = pymysql.connect(
     password=db_password,
     db="study_db_test",
     charset="utf8mb4",
+    cursorclass=pymysql.cursors.DictCursor,
 )
 
 cur = conn.cursor()
