@@ -44,12 +44,13 @@ def login():
 
     try:
         # 데이터베이스에서 사용자 정보 조회
-        query_string = query.GetUser
+        query_string = query.GetUserName
         with conn.cursor() as cur:
             cur.execute(query_string, (name,))
             user = cur.fetchone()
+            pw = query.GetUserPW
 
-        if user is None or user[4] != password:
+        if user is None or pw != password:
             return jsonify({"message": "이름/비밀번호가 형식에 맞지 않거나 존재하지 않습니다."}), 400
 
         # 로그인 처리
