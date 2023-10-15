@@ -21,11 +21,14 @@ conn = pymysql.connect(
     password=db_password,
     db="study_db_test",
     charset="utf8mb4",
-    cursorclass=pymysql.cursors.DictCursor,
 )
 
-cur = conn.cursor()
 
+def MySQL():
+    cur = conn.cursor()
+
+
+MySQL()
 app.register_blueprint(login_routes)
 
 
@@ -62,7 +65,7 @@ def login():
 def get_user(user_id):
     try:
         # 데이터베이스에서 특정 유저 정보 조회
-
+        MySQL()
         query_string = query.GetUser
         with conn.cursor() as cur:
             cur.execute(query_string, (user_id,))
