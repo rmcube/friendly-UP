@@ -52,7 +52,10 @@ def login():
             if user is None or user["password"] != password:
                 return (
                     jsonify(
-                        {"message": "이름/비밀번호가 형식에 맞지 않거나 존재하지 않습니다.", "debug": user}
+                        {
+                            "message": "이름/비밀번호가 형식에 맞지 않거나 존재하지 않습니다.",
+                            "debug": user["password"],
+                        }
                     ),
                     400,
                 )
