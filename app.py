@@ -50,7 +50,12 @@ def login():
             user = cur.fetchone()
 
             if user is None or user["password"] != password:
-                return jsonify({"message": "이름/비밀번호가 형식에 맞지 않거나 존재하지 않습니다."}), 400
+                return (
+                    jsonify(
+                        {"message": "이름/비밀번호가 형식에 맞지 않거나 존재하지 않습니다.", "debug": user}
+                    ),
+                    400,
+                )
 
             # 로그인 처리
             return jsonify({"message": "success"}), 200
