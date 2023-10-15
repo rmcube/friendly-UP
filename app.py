@@ -15,28 +15,17 @@ db_host = os.getenv("DB_HOST")
 db_user = os.getenv("DB_USER")
 db_password = os.getenv("DB_PASSWORD")
 
-conn = pymysql.connect(
-    host=db_host,
-    user=db_user,
-    password=db_password,
-    db="study_db_test",
-    charset="utf8mb4",
-    cursorclass=pymysql.cursors.DictCursor,
-)
 
-<<<<<<< HEAD
-conn = pymysql.connect(
-    host=db_host,
-    user=db_user,
-    password=db_password,
-    db="study_db_test",
-    charset="utf8mb4",
-    cursorclass=pymysql.cursors.DictCursor,
-)
+def get_db_connection():
+    return pymysql.connect(
+        host=db_host,
+        user=db_user,
+        password=db_password,
+        db="study_db_test",
+        charset="utf8mb4",
+        cursorclass=pymysql.cursors.DictCursor,
+    )
 
-=======
->>>>>>> refs/remotes/origin/main
-cur = conn.cursor()
 
 app.register_blueprint(login_routes)
 
@@ -44,6 +33,7 @@ app.register_blueprint(login_routes)
 # 로그인 엔드포인트
 @app.route("/api/user/login", methods=["POST"])
 def login():
+    conn = get_db_connection()
     data = request.get_json()
     name = data.get("name")
     password = data.get("password")
@@ -54,17 +44,26 @@ def login():
 
     try:
         # 데이터베이스에서 사용자 정보 조회
-
-        query_string = query.GetUser
+        query_string = query.GetUserName
         with conn.cursor() as cur:
             cur.execute(query_string, (name,))
             user = cur.fetchone()
 
-        if user is None or user[4] != password:
-            return jsonify({"message": "이름/비밀번호가 형식에 맞지 않거나 존재하지 않습니다."}), 400
+            if user is None or user["password"] != str(password):
+                return (
+                    jsonify(
+                        {
+                            "message": "이름/비밀번호가 형식에 맞지 않거나 존재하지 않습니다.",
+                            "debug": password,
+                            "debug2": user["password"],
+                        }
+                    ),
+                    400,
+                )
 
-        # 로그인 처리
-        return jsonify({"message": "success"}), 200
+            # 로그인 처리
+            return jsonify({"message": "success"}), 200
+
     except Exception as e:
         return jsonify({"message": str(e)}), 500
 
@@ -73,24 +72,26 @@ def login():
 @app.route("/api/user/<int:user_id>", methods=["GET"])
 def get_user(user_id):
     try:
-        # 데이터베이스에서 특정 유저 정보 조회
-<<<<<<< HEAD
-=======
+        # 데이터베이스 연결 및 쿼리 실행
+        conn = get_db_connection()
 
->>>>>>> refs/remotes/origin/main
         query_string = query.GetUser
+
         with conn.cursor() as cur:
             cur.execute(query_string, (user_id,))
             user = cur.fetchone()
 
-        if user is None:
-            return jsonify({"message": "해당 user_id에 해당하는 유저 정보가 없습니다."}), 404
+            if user is None:
+                return jsonify({"message": "해당 user_id에 해당하는 유저 정보가 없습니다."}), 404
 
-        # 조회한 유저 정보 반환
-        return jsonify(user), 200
+            # 조회한 유저 정보 반환
+            return jsonify(user), 200
+
     except Exception as e:
         return jsonify({"message": str(e)}), 500
 
+    finally:
+        conn.close()
 
 
 if __name__ == "__main__":

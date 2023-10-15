@@ -52,7 +52,9 @@ DeleteAlarm = "delete from alarm where user_id=%s"
 # user, ALL
 GetUser = "SELECT * FROM user WHERE user_id = %s"
 
-
+# pw, name
+GetUserName = "SELECT * FROM user WHERE name = %s"
+GetUserPW = "SELECT * FROM user WHERE password = %s"
 """
 과목 점수 유저아이디
 과학 80 2
