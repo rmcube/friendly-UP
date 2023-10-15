@@ -54,7 +54,7 @@ def login():
                     jsonify(
                         {
                             "message": "이름/비밀번호가 형식에 맞지 않거나 존재하지 않습니다.",
-                            "debug": user["password"],
+                            "debug": password,
                         }
                     ),
                     400,
