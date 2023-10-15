@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 
 from LoginSignup import login_routes
 from query import query
+
 load_dotenv()
 
 app = Flask(__name__)
@@ -62,7 +63,7 @@ def get_user(user_id):
     try:
         # 데이터베이스에서 특정 유저 정보 조회
 
-        query_string = query.GetUserById
+        query_string = query.GetUser
         with conn.cursor() as cur:
             cur.execute(query_string, (user_id,))
             user = cur.fetchone()
