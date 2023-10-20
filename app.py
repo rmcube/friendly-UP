@@ -54,15 +54,15 @@ def login():
                     jsonify(
                         {
                             "message": "이름/비밀번호가 형식에 맞지 않거나 존재하지 않습니다.",
-                            "debug": password,
-                            "debug2": user["password"],
                         }
                     ),
                     400,
                 )
+            else:
+                id_id = user["user_id"]
 
             # 로그인 처리
-            return jsonify({"message": "success"}), 200
+            return jsonify({"user_id": id_id}), 200
 
     except Exception as e:
         return jsonify({"message": str(e)}), 500
