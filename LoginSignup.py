@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request, Blueprint
 import pymysql
 import os
+from query import query
 
 # blueprint는 메인(app.py)로 다른 파일들(class)를 묶어주는 역할을 한다
 login_routes = Blueprint("member", __name__, url_prefix="/api/user")
