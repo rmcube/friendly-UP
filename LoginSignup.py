@@ -1,28 +1,31 @@
 from flask import Flask, jsonify, request, Blueprint
 import pymysql
+import os
 
 # blueprint는 메인(app.py)로 다른 파일들(class)를 묶어주는 역할을 한다
 login_routes = Blueprint("member", __name__, url_prefix="/api/user")
 
 # MySQL 설정
-db_connection = {
-    "host": "127.0.0.1",
-    "user": "root",
-    "password": "4235",
-    "db": "study_db_test",
-}
+db_host = os.getenv("DB_HOST")
+db_user = os.getenv("DB_USER")
+db_password = os.getenv("DB_PASSWORD")
 
-conn = pymysql.connect(
-    host=db_connection["host"],
-    user=db_connection["user"],
-    password=db_connection["password"],
-    db=db_connection["db"],
-)
+
+def get_db_connection():
+    return pymysql.connect(
+        host=db_host,
+        user=db_user,
+        password=db_password,
+        db="study_db_test",
+        charset="utf8mb4",
+        cursorclass=pymysql.cursors.DictCursor,
+    )
 
 
 # 회원 가입 엔드포인트
 @login_routes.route("/signup", methods=["POST"])
 def signup():
+    conn = get_db_connection()
     data = request.get_json()
     name = data.get("name")
     grade = data.get("grade")
@@ -69,6 +72,7 @@ def signup():
 # 로그인 엔드포인트
 @login_routes.route("/api/user/login", methods=["POST"])
 def login():
+    conn = get_db_connection()
     data = request.get_json()
     name = data.get("name")
     password = data.get("password")
@@ -96,6 +100,7 @@ def login():
 # 특정 유저의 정보 조회
 @login_routes.route("/api/user/<int:user_id>", methods=["GET"])
 def get_user(user_id):
+    conn = get_db_connection()
     try:
         # 데이터베이스에서 특정 유저 정보 조회
         with conn.cursor() as cursor:
