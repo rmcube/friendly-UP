@@ -53,8 +53,15 @@ def signup():
         #     result = cursor.fetchall()
         #     print(cursor.rowcount)
         #     print(result)
+        conn = get_db_connection()
+        query_string = query.GetUserName
+        with conn.cursor() as cur:
+            cur.execute(query_string, (name,))
+            user = cur.fetchone()
 
-        return jsonify({"message": user["user_id"]}), 201
+            if user is None and user["password"] == str(password):
+                id_id = user["user_id"]
+        return jsonify({"user_id": id_id}), 201
     except Exception as e:
         return jsonify({"message": str(e)}), 500
 
