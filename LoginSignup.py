@@ -1,21 +1,24 @@
-from flask import Flask, jsonify,request, Blueprint
+from flask import Flask, jsonify, request, Blueprint
 import pymysql
 
-#blueprint는 메인(app.py)로 다른 파일들(class)를 묶어주는 역할을 한다
-login_routes = Blueprint("member", __name__, url_prefix='/api/user')
+# blueprint는 메인(app.py)로 다른 파일들(class)를 묶어주는 역할을 한다
+login_routes = Blueprint("member", __name__, url_prefix="/api/user")
 
 # MySQL 설정
 db_connection = {
-    "host":"127.0.0.1",
-    "user":"root",
-    "password":"4235",
-    "db":"study_db_test"
+    "host": "127.0.0.1",
+    "user": "root",
+    "password": "4235",
+    "db": "study_db_test",
 }
 
-conn = pymysql.connect(host = db_connection["host"],
-                       user = db_connection["user"],
-                       password=db_connection["password"],
-                       db = db_connection["db"] )
+conn = pymysql.connect(
+    host=db_connection["host"],
+    user=db_connection["user"],
+    password=db_connection["password"],
+    db=db_connection["db"],
+)
+
 
 # 회원 가입 엔드포인트
 @login_routes.route("/signup", methods=["POST"])
@@ -50,10 +53,8 @@ def signup():
         #     result = cursor.fetchall()
         #     print(cursor.rowcount)
         #     print(result)
-        
-        
-        
-        return jsonify({"message": "회원 가입이 완료되었습니다."}), 201
+
+        return jsonify({"message": user["user_id"]}), 201
     except Exception as e:
         return jsonify({"message": str(e)}), 500
 
@@ -103,4 +104,5 @@ def get_user(user_id):
     except Exception as e:
         return jsonify({"message": str(e)}), 500
 
-'''유저 정보가 만들어지면 서버에서 정보안에 보유한 캐시,플레이타임이 적히도록 추가할 것'''
+
+"""유저 정보가 만들어지면 서버에서 정보안에 보유한 캐시,플레이타임이 적히도록 추가할 것"""
