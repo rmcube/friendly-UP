@@ -41,7 +41,7 @@ def inf_edit():
     grade = data.get("grade")
     prefer_subject = data.get("prefer_subject")
     query = """
-    UPDATE study_db_test 
+    UPDATE user 
     SET prefer_subject=%s, grade=%s, school=%s 
     WHERE user_id=%s;
     """
