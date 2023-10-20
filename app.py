@@ -30,6 +30,32 @@ def get_db_connection():
 app.register_blueprint(login_routes)
 
 
+# 정보 수정 (차현우 임시 제작)
+@app.route("/api/user/inf_edit", methods=["POST"])
+def inf_edit():
+    db_conn = get_db_connection()
+    cursor = db_conn.cursor()
+    data = request.get_json()
+    user_id = data.get("user_id")
+    school = data.get("school")
+    grade = data.get("grade")
+    prefer_subject = data.get("prefer_subject")
+    query = """
+    UPDATE your_table_name 
+    SET prefer_subject=%s, grade=%s, school=%s 
+    WHERE user_id=%s;
+    """
+    values = (prefer_subject, grade, school, user_id)
+
+    cursor.execute(query, values)
+
+    db_conn.commit()  # 변경 사항을 데이터베이스에 반영합니다.
+
+    cursor.close()
+    db_conn.close()
+    return jsonify({"message": "Success"}), 200
+
+
 # 로그인 엔드포인트
 @app.route("/api/user/login", methods=["POST"])
 def login():
