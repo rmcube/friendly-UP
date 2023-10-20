@@ -7,7 +7,7 @@ db = pymysql.connect(host="127.0.0.1", user = "root", password="4235", db = "stu
 cursor = db.cursor()
 
 
-df = pd.read_csv('user.csv',encoding = 'utf-8-sig')
+df = pd.read_csv('friends.csv',encoding = 'utf-8-sig')
 df.columns = ['relation_id','user_id2', 'user_id3', 'created_at', 'updated_at']
 engine = create_engine('mysql+pymysql://root:4235@127.0.0.1/study_db_test')
 conn = engine.connect()
