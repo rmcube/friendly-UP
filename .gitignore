@@ -9,3 +9,4 @@ pakseokjune/
 */__pycache__/*
 *.swp
 *.save
+*.pyc
