@@ -22,7 +22,7 @@ CREATE TABLE user (
 	password VARCHAR(50) NOT NULL,
 	cash INT NULL,
 	prefer_subject VARCHAR(50) NOT NULL,
-	playtime TIME 	NULL,
+	playtime INT 	NULL,
 	total_cash INT	NULL,
 	date_sum INT	NULL,	
 	problem_num INT	NULL,	
