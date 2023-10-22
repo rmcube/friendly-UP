@@ -27,8 +27,9 @@ cursor = conn.cursor()
 @app.route("/api/user/problems", methods=["GET"])
 def get_user_problems():
     
-    # 클라이언트에서 로그인된 유저의 정보를 전달받음
-    user_info = request.get_json()
+    # (수정중) 유저 아이디(숫자)와 user_info 연동(?)시키기
+    user_id = request.get_json().get("id")
+    user_info = user_id.get("id")
 
     if user_info is None: 
         return jsonify({"message": "로그인이 되어 있지 않습니다."}), 401
