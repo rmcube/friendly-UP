@@ -11,7 +11,7 @@ conn = pymysql.connect(
 )
 
 # 데이터를 적재할 CSV 파일 경로 지정 (경로는 실제 환경에 맞게 변경해야 합니다.)
-csv_file_path = "Problem.csv"
+csv_file_path = "/friendly-UP/CSV_LIST/Problem.csv"
 
 # pandas를 사용하여 CSV 파일 읽기
 df = pd.read_csv(csv_file_path)
