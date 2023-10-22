@@ -115,7 +115,7 @@ def upValue():
     # Column name is inserted directly into the query using string formatting.
     # Be careful as this can make your application vulnerable to SQL Injection attacks.
     query = f"""
-        UPDATE users
+        UPDATE user
         SET {value} = {value} + %s
         WHERE user_id = %s;
         """
@@ -146,7 +146,7 @@ def downValue():
     # Column name is inserted directly into the query using string formatting.
     # Be careful as this can make your application vulnerable to SQL Injection attacks.
     query = f"""
-        UPDATE users
+        UPDATE user
         SET {value} = {value} - %s
         WHERE user_id = %s;
         """
