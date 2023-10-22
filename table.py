@@ -54,7 +54,7 @@ CREATE TABLE problems (
 	difficulty	int	not	null ,
 	prefer_subject	varchar(50)null ,
     question	VARCHAR(100)null ,	
-    anwser	VARCHAR(50)null ,
+    answer	VARCHAR(50)null ,
 	grade	int	not	null , 	
 	subject	VARCHAR(50)null , 	
 	ans1	varchar(50)null , 	
