@@ -91,8 +91,9 @@ CREATE TABLE alarm (
 ]
 
 cursor = conn.cursor()
-cursor.execute("DROP DATABASE study_db_test;")
+cursor.execute("DROP DATABASE IF EXISTS study_db_test;")
 cursor.execute("CREATE DATABASE study_db_test;")
+cursor.execute("USE study_db_test;")  # 추가된 구문
 
 try:
     # 각 테이블 생성 쿼리 실행
