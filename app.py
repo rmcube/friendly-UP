@@ -217,10 +217,6 @@ def get_user(user_id):
             if user is None:
                 return jsonify({"message": "해당 user_id에 해당하는 유저 정보가 없습니다."}), 404
 
-            # timedelta 객체를 문자열로 변환
-            if "playtime" in user and isinstance(user["playtime"], datetime.timedelta):
-                user["playtime"] = str(user["playtime"])
-
             # 조회한 유저 정보 반환
             return jsonify(user), 200
 
@@ -229,6 +225,36 @@ def get_user(user_id):
 
     finally:
         conn.close()
+
+
+# 업데이트 타임
+@app.route("/api/user/update_time", methods=["POST"])
+def update_user_time():
+    db_conn = get_db_connection()
+    cursor = db_conn.cursor()
+    data = request.get_json()
+
+    user_id = data.get("user_id")
+
+    # Column name is inserted directly into the query using string formatting.
+    # Be careful as this can make your application vulnerable to SQL Injection attacks.
+    query = f"""
+        UPDATE user
+        SET updated_at = %s
+        WHERE user_id = %s;
+        """
+
+    # Only the actual values are passed to cursor.execute() method.
+    values = (datetime.now(), user_id)
+
+    cursor.execute(query, values)
+
+    db_conn.commit()  # 변경 사항을 데이터베이스에 반영합니다.
+
+    cursor.close()
+    db_conn.close()
+
+    return jsonify({"message": "Success"}), 200
 
 
 if __name__ == "__main__":
