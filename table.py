@@ -49,7 +49,7 @@ CREATE TABLE solved (
 """,
     """
 CREATE TABLE problems (
-	problem_id	INT PRIMARY KEY ,
+	problem_id	INT AUTO_INCREMENT PRIMARY KEY ,
 	school	VARCHAR(50)	null ,
 	difficulty	int	not	null ,
 	prefer_subject	varchar(50)null ,
@@ -65,7 +65,7 @@ CREATE TABLE problems (
 """,
     """
 CREATE TABLE friends (
-	relation_id	int not null primary key ,
+	relation_id	int not null AUTO_INCREMENT primary key ,
 	user_id2 int not null references user(user_ID),  
 	user_ID3 int not null references user(user_ID),  
 	Created_at datetime not null ,  
