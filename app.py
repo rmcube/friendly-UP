@@ -104,7 +104,7 @@ def inf_edit():
 
 # 값 추가 ( 차현우 임시 제작 )
 @app.route("/api/user/up_value", methods=["POST"])
-def inf_edit():
+def upValue():
     db_conn = get_db_connection()
     cursor = db_conn.cursor()
     data = request.get_json()
@@ -129,7 +129,7 @@ def inf_edit():
 
 # 값 다운 ( 차현우 임시 제작 )
 @app.route("/api/user/up_down", methods=["POST"])
-def inf_edit():
+def downValue():
     db_conn = get_db_connection()
     cursor = db_conn.cursor()
     data = request.get_json()
