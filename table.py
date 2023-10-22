@@ -52,7 +52,6 @@ CREATE TABLE problems (
 	problem_id	INT AUTO_INCREMENT PRIMARY KEY ,
 	school	VARCHAR(50)	null ,
 	difficulty	int	not	null ,
-	prefer_subject	varchar(50)null ,
     question	VARCHAR(100)null ,	
     answer	VARCHAR(50)null ,
 	grade	int	not	null , 	
