@@ -164,35 +164,5 @@ def get_user(user_id):
         conn.close()
 
 
-# 특정 유저의 상세 정보 조회
-@app.route("/api/user/detail", methods=["POST"])
-def get_user2():
-    try:
-        # 데이터베이스 연결 및 쿼리 실행
-        conn = get_db_connection()
-        data = request.get_json()
-        user_id = data.get("user_id")
-        query_string = f"SELECT school and grade and prefer_subject FROM user WHERE user_id = %s"  # 문자열 포매팅으로 필드 이름 설정
-        with conn.cursor() as cur:
-            cur.execute(
-                query_string,
-                (user_id,),  # 쉼표가 있는 튜플로 전달
-            )
-            user = cur.fetchone()
-
-            if user is None:
-                return jsonify({"message": "해당 user_id에 해당하는 유저 정보가 없습니다."}), 404
-
-            # 조회한 유저 정보 반환
-            return jsonify(user), 200
-
-    except Exception as e:
-        return jsonify({"message": str(e)}), 500
-
-    finally:
-        if conn is not None:
-            conn.close()
-
-
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
