@@ -60,7 +60,7 @@ def signup():
             INSERT INTO user 
             (name, grade, school, password, prefer_subject, created_at, cash,
             total_cash, problem_num, problem_solved,
-            shared_num,
+            shared_sum,
             send_sum,
             date_sum,
             playtime)
