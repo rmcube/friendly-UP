@@ -14,14 +14,14 @@ create_table_queries = [
     """
 CREATE TABLE user (
 	user_id INT NOT NULL AUTO_INCREMENT ,
-	name VARCHAR(50) NULL,
+	name VARCHAR(50) NOT NULL,
 	grade INT NOT NULL,
 	school VARCHAR(50) NULL,
 	created_at DATETIME NOT NULL,
 	updated_at DATETIME NOT NULL,
-	password INT NULL,
+	password INT NOT NULL,
 	cash INT NULL,
-	prefer_subject VARCHAR(50) NULL,
+	prefer_subject VARCHAR(50) NOT NULL,
 	playtime TIME 	NULL,
 	total_cash INT	NULL,
 	date_sum INT	NULL,	
@@ -91,6 +91,8 @@ CREATE TABLE alarm (
 ]
 
 cursor = conn.cursor()
+cursor.execute("DROP DATABASE study_db_test;")
+cursor.execute("CREATE DATABASE study_db_test;")
 
 try:
     # 각 테이블 생성 쿼리 실행
