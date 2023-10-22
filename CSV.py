@@ -20,14 +20,15 @@ def get_db_connection():
     )
 
 
+conn = get_db_connection()
 # 데이터를 적재할 CSV 파일 경로 지정 (경로는 실제 환경에 맞게 변경해야 합니다.)
 csv_directory_path = "/home/ubuntu/friendly-UP/CSV_LIST/"
 
-cursor = get_db_connection.cursor()
+cursor = conn.cursor()
 
 # problems 테이블 초기화
 cursor.execute("TRUNCATE TABLE problems")
-get_db_connection.commit()
+conn.commit()
 
 for filename in os.listdir(csv_directory_path):
     if filename.endswith(".csv"):
@@ -58,7 +59,7 @@ for filename in os.listdir(csv_directory_path):
                 ),
             )
 
-        get_db_connection.commit()
+        conn.commit()
 
 cursor.close()
-get_db_connection.close()
+conn.close()
