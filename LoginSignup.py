@@ -65,7 +65,7 @@ def signup():
             date_sum,
             playtime)
             VALUES (%s,%s,%s,%s,%s,NOW(),0 ,0 , 0 , 0 , 0 , 0 , 0 ,
-                    ADDTIME('00:00:01', '00:00:05'))
+                    0)
             """
             cursor.execute(query, (name, grade, school, password, prefer_subject))
             conn.commit()
