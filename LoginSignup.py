@@ -85,7 +85,7 @@ def login():
             cursor.execute(query, name)
             user = cursor.fetchone()
 
-        if user is None or user["password"] != password:
+        if user is None or user["password"] != str(password):
             return jsonify({"message": "이름/비밀번호가 형식에 맞지 않거나 존재하지 않습니다."}), 400
 
         # 로그인 처리
