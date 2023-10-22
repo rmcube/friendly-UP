@@ -18,7 +18,7 @@ CREATE TABLE user (
 	grade INT NOT NULL,
 	school VARCHAR(50) NULL,
 	created_at DATETIME NOT NULL,
-	updated_at DATETIME NOT NULL,
+	updated_at DATETIME NULL,
 	password INT NOT NULL,
 	cash INT NULL,
 	prefer_subject VARCHAR(50) NOT NULL,
