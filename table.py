@@ -13,7 +13,7 @@ conn = pymysql.connect(
 create_table_queries = [
     """
 CREATE TABLE user (
-	user_id INT NOT NULL,
+	user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	name VARCHAR(50) NULL,
 	grade INT NOT NULL,
 	school VARCHAR(50) NULL,
@@ -29,8 +29,6 @@ CREATE TABLE user (
 	problem_solved	INT	NULL,	
 	share_sum	INT	NULL,	
 	send_sum	INT	NULL,
-
-	PRIMARY KEY (user_id)
 );
 """,
     """
