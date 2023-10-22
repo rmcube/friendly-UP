@@ -111,12 +111,17 @@ def upValue():
     user_id = data.get("user_id")
     value = data.get("value")
     valueUP = data.get("valueUP")
-    query = """
-    UPDATE users
-    SET %s = %s + %s
-    WHERE user_id = %s;
-    """
-    values = (value, value, valueUP, user_id)
+
+    # Column name is inserted directly into the query using string formatting.
+    # Be careful as this can make your application vulnerable to SQL Injection attacks.
+    query = f"""
+        UPDATE users
+        SET {value} = {value} + %s
+        WHERE user_id = %s;
+        """
+
+    # Only the actual values are passed to cursor.execute() method.
+    values = (valueUP, user_id)
 
     cursor.execute(query, values)
 
@@ -124,6 +129,7 @@ def upValue():
 
     cursor.close()
     db_conn.close()
+
     return jsonify({"message": "Success"}), 200
 
 
@@ -136,12 +142,17 @@ def downValue():
     user_id = data.get("user_id")
     value = data.get("value")
     valueUP = data.get("valueUP")
-    query = """
-    UPDATE users
-    SET %s = %s - %s
-    WHERE user_id = %s;
-    """
-    values = (value, value, valueUP, user_id)
+
+    # Column name is inserted directly into the query using string formatting.
+    # Be careful as this can make your application vulnerable to SQL Injection attacks.
+    query = f"""
+        UPDATE users
+        SET {value} = {value} - %s
+        WHERE user_id = %s;
+        """
+
+    # Only the actual values are passed to cursor.execute() method.
+    values = (valueUP, user_id)
 
     cursor.execute(query, values)
 
@@ -149,6 +160,7 @@ def downValue():
 
     cursor.close()
     db_conn.close()
+
     return jsonify({"message": "Success"}), 200
 
 
