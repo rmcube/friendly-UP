@@ -167,19 +167,30 @@ def get_user(user_id):
 
 # 특정 유저의 상세 정보 조회
 @app.route("/api/user/detail", methods=["POST"])
-def get_user2(user_id):
+def get_user2():
     try:
         # 데이터베이스 연결 및 쿼리 실행
         conn = get_db_connection()
         data = request.get_json()
         user_id = data.get("user_id")
         value = data.get("value")
-        query_string = "SELECT %s FROM user WHERE user_id = %s"
+
+        if value not in [
+            "name",
+            "grade",
+            "school",
+            "password",
+            "prefer_subject",
+        ]:  # 유효한 필드인지 확인
+            return jsonify({"message": f"Invalid field: {value}"}), 400
+
+        query_string = (
+            f"SELECT {value} FROM user WHERE user_id = %s"  # 문자열 포매팅으로 필드 이름 설정
+        )
         with conn.cursor() as cur:
             cur.execute(
                 query_string,
-                (value),
-                (user_id),
+                (user_id,),  # 쉼표가 있는 튜플로 전달
             )
             user = cur.fetchone()
 
@@ -193,7 +204,8 @@ def get_user2(user_id):
         return jsonify({"message": str(e)}), 500
 
     finally:
-        conn.close()
+        if conn is not None:
+            conn.close()
 
 
 if __name__ == "__main__":
