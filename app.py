@@ -257,5 +257,39 @@ def update_user_time():
     return jsonify({"message": "Success"}), 200
 
 
+@app.route("/api/user/check_update_time", methods=["POST"])
+def check_update_time():
+    db_conn = get_db_connection()
+    cursor = db_conn.cursor()
+    data = request.get_json()
+
+    user_id = data.get("user_id")
+
+    # Get the updated_at time from the database for this user
+    query_get_time = """
+        SELECT updated_at
+        FROM user
+        WHERE user_id = %s;
+        """
+
+    cursor.execute(query_get_time, (user_id,))
+
+    result = cursor.fetchone()
+
+    if not result:
+        return jsonify({"message": "No such user"}), 404
+
+    last_updated_at = result["updated_at"]
+
+    # Calculate the difference between now and the last update time
+    time_difference_in_seconds = (datetime.now() - last_updated_at).total_seconds()
+
+    # Close connection
+    cursor.close()
+    db_conn.close()
+
+    return jsonify({"time_difference_in_seconds": time_difference_in_seconds}), 200
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
