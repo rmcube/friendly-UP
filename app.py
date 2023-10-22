@@ -279,12 +279,14 @@ def check_update_time():
     if not result:
         return jsonify({"message": "No such user"}), 404
 
-    last_updated_at_date = result["updated_at"].date()  # Extract date part only
+    last_updated_at_date = result["updated_at"]
 
-    # Check if the last update date is different from today's date
-    if last_updated_at_date != datetime.today().date():  # Compare dates only, not times
+    # If updated_at is NULL or the last update date is different from today's date, return "OK"
+    if (
+        last_updated_at_date is None
+        or last_updated_at_date.date() != datetime.today().date()
+    ):  # Compare dates only, not times
         message = "OK"
-
     else:
         message = "NO"
 
