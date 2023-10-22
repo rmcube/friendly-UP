@@ -178,8 +178,8 @@ def get_user2(user_id):
         with conn.cursor() as cur:
             cur.execute(
                 query_string,
-                (user_id),
                 (value),
+                (user_id),
             )
             user = cur.fetchone()
 
