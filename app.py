@@ -30,6 +30,51 @@ def get_db_connection():
 app.register_blueprint(login_routes)
 
 
+# 문제 불러오기 (차현우 임시 제작)
+def random_problems(school, grade, preferred_subject):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    selected_problems = []
+
+    subjects = ["수학", "영어", "한국사"]
+
+    for subject in subjects:
+        if subject == preferred_subject:
+            num_problems_to_select = 4
+        else:
+            num_problems_to_select = 1
+
+        # problems 테이블에서 해당 과목에 해당하는 문제들을 랜덤하게 선택합니다.
+        query = """
+            SELECT *
+            FROM problems
+            WHERE school=%s AND grade=%s AND subject=%s 
+            ORDER BY RAND()
+            LIMIT %s
+        """
+
+        cursor.execute(query, (school, grade, subject, num_problems_to_select))
+
+        selected_problems.extend(cursor.fetchall())
+
+    cursor.close()
+
+    return selected_problems
+
+
+@app.route("/api/user/GET_PROBLEM", methods=["POST"])
+def RETURN_PROBLEM():
+    data = request.get_json()  # JSON 형식의 요청 본문을 파싱합니다.
+
+    school = data["school"]
+    grade = data["grade"]
+    subject = data["subject"]
+
+    selected_proproblems = random_problems(school, grade, subject)
+
+    return jsonify(selected_proproblems), 200
+
+
 # 정보 수정 (차현우 임시 제작)
 @app.route("/api/user/inf_edit", methods=["POST"])
 def inf_edit():
@@ -105,6 +150,37 @@ def get_user(user_id):
 
         with conn.cursor() as cur:
             cur.execute(query_string, (user_id,))
+            user = cur.fetchone()
+
+            if user is None:
+                return jsonify({"message": "해당 user_id에 해당하는 유저 정보가 없습니다."}), 404
+
+            # 조회한 유저 정보 반환
+            return jsonify(user), 200
+
+    except Exception as e:
+        return jsonify({"message": str(e)}), 500
+
+    finally:
+        conn.close()
+
+
+# 특정 유저의 상세 정보 조회
+@app.route("/api/user/detail", methods=["POST"])
+def get_user2(user_id):
+    try:
+        # 데이터베이스 연결 및 쿼리 실행
+        conn = get_db_connection()
+        data = request.get_json()
+        user_id = data.get("user_id")
+        value = data.get("value")
+        query_string = "SELECT %s FROM user WHERE user_id = %s"
+        with conn.cursor() as cur:
+            cur.execute(
+                query_string,
+                (user_id),
+                (value),
+            )
             user = cur.fetchone()
 
             if user is None:
