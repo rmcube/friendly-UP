@@ -56,7 +56,7 @@ def signup():
     try:
         # 데이터베이스에 저장
         with conn.cursor() as cursor:
-            query = "INSERT INTO user (name, grade, school, password, prefer_subject, created_at) VALUES (%s, %s, %s, %s, %s, NOW())"
+            query = "INSERT INTO user (name, grade, school, password, prefer_subject, created_at, cash, total_cash, problem_num, problem_solved, shared_num, send_sum, date_sum, playtime) VALUES (%s, %s, %s, %s, %s, NOW(), 0, 0, 0, 0, 0, 0, 0, ADDTIME('00:30))"
             cursor.execute(query, (name, grade, school, password, prefer_subject))
             conn.commit()
 
