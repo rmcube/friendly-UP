@@ -14,7 +14,7 @@ conn = pymysql.connect(
 csv_file_path = "/home/ubuntu/friendly-UP/CSV_LIST/Problem.csv"
 
 # pandas를 사용하여 CSV 파일 읽기
-df = pd.read_csv(csv_file_path)
+df = pd.read_csv(csv_file_path, dtype={"학년": int, "난이도": int})
 
 cursor = conn.cursor()
 
