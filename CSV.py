@@ -1,19 +1,14 @@
 import os
 import pandas as pd
 import pymysql
-from dotenv import load_dotenv
-
-db_host = os.getenv("DB_HOST")
-db_user = os.getenv("DB_USER")
-db_password = os.getenv("DB_PASSWORD")
 
 
 # MySQL 연결 정보 설정
 def get_db_connection():
     return pymysql.connect(
-        host=db_host,
-        user=db_user,
-        password=db_password,
+        host="127.0.0.1",
+        user="root",
+        password="4235",
         db="study_db_test",
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
