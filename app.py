@@ -81,6 +81,7 @@ def inf_edit():
     db_conn = get_db_connection()
     cursor = db_conn.cursor()
     data = request.get_json()
+
     user_id = data.get("user_id")
     school = data.get("school")
     grade = data.get("grade")
@@ -91,6 +92,56 @@ def inf_edit():
     WHERE user_id=%s;
     """
     values = (prefer_subject, grade, school, user_id)
+
+    cursor.execute(query, values)
+
+    db_conn.commit()  # 변경 사항을 데이터베이스에 반영합니다.
+
+    cursor.close()
+    db_conn.close()
+    return jsonify({"message": "Success"}), 200
+
+
+# 값 추가 ( 차현우 임시 제작 )
+@app.route("/api/user/up_value", methods=["POST"])
+def inf_edit():
+    db_conn = get_db_connection()
+    cursor = db_conn.cursor()
+    data = request.get_json()
+    user_id = data.get("user_id")
+    value = data.get("value")
+    valueUP = data.get("valueUP")
+    query = """
+    UPDATE users
+    SET %s = %s + %s
+    WHERE user_id = %s;
+    """
+    values = (value, value, valueUP, user_id)
+
+    cursor.execute(query, values)
+
+    db_conn.commit()  # 변경 사항을 데이터베이스에 반영합니다.
+
+    cursor.close()
+    db_conn.close()
+    return jsonify({"message": "Success"}), 200
+
+
+# 값 다운 ( 차현우 임시 제작 )
+@app.route("/api/user/up_down", methods=["POST"])
+def inf_edit():
+    db_conn = get_db_connection()
+    cursor = db_conn.cursor()
+    data = request.get_json()
+    user_id = data.get("user_id")
+    value = data.get("value")
+    valueUP = data.get("valueUP")
+    query = """
+    UPDATE users
+    SET %s = %s - %s
+    WHERE user_id = %s;
+    """
+    values = (value, value, valueUP, user_id)
 
     cursor.execute(query, values)
 
