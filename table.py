@@ -12,78 +12,80 @@ conn = pymysql.connect(
 # 테이블 생성 쿼리문 리스트
 create_table_queries = [
     """
-    CREATE TABLE alarm (
-        alarm_id INT NOT NULL AUTO_INCREMENT,
-        msg VARCHAR(1000) DEFAULT NULL,
-        user_id INT NOT NULL,
-        send_id INT NOT NULL,
-        created_at DATETIME NOT NULL,
-        updated_at DATETIME NOT NULL,
-        PRIMARY KEY (alarm_id),
-        KEY user_id (user_id),
-        KEY send_id (send_id),
-        CONSTRAINT alarm_ibfk_1 FOREIGN KEY (user_id) REFERENCES user (user_id),
-        CONSTRAINT alarm_ibfk_2 FOREIGN KEY (send_id) REFERENCES user (user_id)
-    ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
-""",
-    """
-CREATE TABLE friends (
-	relation_id	INT	NOT	NULL	AUTO_INCREMENT	PRIMARY	KEY	, 
-	user_id2	INT	NOT	NULL	REFERENCES	user(user_ID), 
-	user_ID3	INT	NOT	NULL	REFERENCES	user(user_ID), 
-	Created_at	DATETIME	NOT	NULL, 
-	UPDATED_AT	DATETIME	NOT	NULL	
-);
+CREATE TABLE user (
+	user_id INT NOT NULL,
+	name VARCHAR(50) NULL,
+	grade INT NOT NULL,
+	school VARCHAR(50) NULL,
+	created_at DATETIME NOT NULL,
+	updated_at DATETIME NOT NULL,
+	password INT NULL,
+	cash INT NULL,
+	prefer_subject VARCHAR(50) NULL,
+	playtime TIME 	NULL,
+	total_cash INT	NULL,
+	date_sum INT	NULL,	
+	problem_num INT	NULL,	
+	problem_solved	INT	NULL,	
+	share_sum	INT	NULL,	
+	send_sum	INT	NULL,
 
-""",
-    """
-CREATE TABLE problems (
-problem_ID	int	not	null	auto_increment primary key ,
-difficulty	int	not	null ,
-question	varchar(1000)	null ,
-answer	varchar(1000)	null ,
-subject	varchar(50)	null ,
-created_at	datetime	not	null ,
-updated_at	datetime	not	null 
+	PRIMARY KEY (user_id)
 );
 """,
     """
 CREATE TABLE solved (
-solved_ID	int	not	null	auto_increment primary key ,	
-user_ID	int	not	Null	references	user(user_ID),	
-problem_Id2	int not null references problems(problem_Id),	
-score	int not null , 	
-time_taken	time not null , 	
-subject	varchar(50)	Null , 	
-is_correct	tinyint(1)	not	Null ,	
-created_At	datetime not null , 	
-updated_At	datetime not null 
+	solved_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+	user_id INT NOT NULL REFERENCES user(user_id),
+	problem_id2 INT NOT NULL REFERENCES problems(problem_id),
+	score INT NOT NULL, 
+	time_taken TIME NOT NULL, 
+	subject VARCHAR(50) DEFAULT NULL, 
+	is_correct TINYINT(1) NOT NUll , 
+	created_at DATETIME NOt null , 
+	UPDATED_AT DATETIME NOt null 
 
 );
 """,
     """
-CREATE TABLE user (
-user_Id int not null auto_increment primary key ,
-name varchar(50)null , 
-grade int not Null,  
-school varchar(50)null  ,   
-password varchar(100)null  ,  
-cash int Null   ,  
-prefer_subject varchar(50)null   ,  
-playtime time Null   ,
+CREATE TABLE problems (
+	problem_id	INT PRIMARY KEY ,
+	school	VARCHAR(50)	null ,
+	difficulty	int	not	null ,
+	prefer_subject	varchar(50)null ,	
+	grade	int	not	null , 	
+	subject	VARCHAR(50)null , 	
+	ans1	varchar(50)null , 	
+	ans2	varchar(50)null , 	
+	ans3	VARCHAR(50)NULL  	
 
-total_cash int Null   ,
-
-date_sum int Null   ,
-
-problem_num int Null   ,
-
-problem_solved int Null   ,
-
-share_sum int Null   ,
-
-send_sum int Null   
 );
+""",
+    """
+CREATE TABLE friends (
+	relation_id	int not null primary key ,
+	user_id2 int not null references user(user_ID),  
+	user_ID3 int not null references user(user_ID),  
+	Created_at datetime not null ,  
+	UPDATED_AT datetime not null  
+
+);
+""",
+    """
+CREATE TABLE alarm (
+	ALARM_ID	int	not	null	auto_increment primary key  ,
+	msg	varchar (1000)NULL   ,
+
+	user_Id	int	not	Null	references	user(user_Id),	
+
+	send_Id	int	not	Null	references	user(user_Id),	
+
+	Created_At	datetime	not	null ,
+
+	UPDATED_AT	datetime	not	null  
+
+);
+
 """,
 ]
 
