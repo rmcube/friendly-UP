@@ -12,17 +12,22 @@ db_connection = {
     "db": "study_db_test",
 }
 
-conn = pymysql.connect(
-    host=db_connection["host"],
-    user=db_connection["user"],
-    password=db_connection["password"],
-    db=db_connection["db"],
-)
+
+def get_db_connection():
+    return pymysql.connect(
+        host=db_connection["host"],
+        user=db_connection["user"],
+        password=db_connection["password"],
+        db=db_connection["db"],
+        charset="utf8mb4",
+        cursorclass=pymysql.cursors.DictCursor,
+    )
 
 
 # 회원 가입 엔드포인트
 @login_routes.route("/signup", methods=["POST"])
 def signup():
+    conn = get_db_connection()
     data = request.get_json()
     name = data.get("name")
     grade = data.get("grade")
@@ -67,37 +72,11 @@ def signup():
         return jsonify({"message": str(e)}), 500
 
 
-# 로그인 엔드포인트
-@login_routes.route("/api/user/login", methods=["POST"])
-def login():
-    data = request.get_json()
-    name = data.get("name")
-    password = data.get("password")
-
-    # 이름과 비밀번호 확인
-    if name is None or password is None:
-        return jsonify({"message": "이름/비밀번호를 입력해야 합니다."}), 400
-
-    try:
-        # 데이터베이스에서 사용자 정보 조회
-        with conn.cursor() as cursor:
-            query = "SELECT * FROM user WHERE name = %s"
-            cursor.execute(query, name)
-            user = cursor.fetchone()
-
-        if user is None or user["password"] != str(password):
-            return jsonify({"message": "이름/비밀번호가 형식에 맞지 않거나 존재하지 않습니다."}), 400
-
-        # 로그인 처리
-        return jsonify({"message": "success"}), 200
-    except Exception as e:
-        return jsonify({"message": str(e)}), 500
-
-
 # 특정 유저의 정보 조회
 @login_routes.route("/api/user/<int:user_id>", methods=["GET"])
 def get_user(user_id):
     try:
+        conn = get_db_connection()
         # 데이터베이스에서 특정 유저 정보 조회
         with conn.cursor() as cursor:
             query = "SELECT * FROM user WHERE user_id = %s"
