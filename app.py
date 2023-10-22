@@ -68,7 +68,7 @@ def RETURN_PROBLEM():
 
     school = data["school"]
     grade = data["grade"]
-    subject = data["subject"]
+    subject = data["prefer_subject"]
 
     selected_proproblems = random_problems(school, grade, subject)
 
