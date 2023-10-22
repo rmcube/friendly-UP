@@ -119,7 +119,8 @@ def login():
         with conn.cursor() as cur:
             cur.execute(query_string, (name,))
             user = cur.fetchone()
-            return jsonify({"password": user[password]})
+            if str(password) == user["password"]:
+                return jsonify({"message": "Success"})
             if user is None or user["password"] != str(password):
                 return (
                     jsonify(
