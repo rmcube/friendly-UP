@@ -292,7 +292,7 @@ def check_update_time():
     cursor.close()
     db_conn.close()
 
-    return jsonify({"message": message}), 200
+    return jsonify({"sign": message}), 200
 
 
 if __name__ == "__main__":
