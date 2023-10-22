@@ -58,13 +58,13 @@ def signup():
         with conn.cursor() as cursor:
             query = """
             INSERT INTO user 
-            (name, grade, school, password, prefer_subject, created_at, updated_at, cash,
+            (name, grade, school, password, prefer_subject, created_at, cash,
             total_cash, problem_num, problem_solved,
             share_sum,
             send_sum,
             date_sum,
             playtime)
-            VALUES (%s,%s,%s,%s,%s,NOW(), NOW(),0 ,0 , 0 , 0 , 0 , 0 , 0 ,
+            VALUES (%s,%s,%s,%s,%s,NOW(),0 ,0 , 0 , 0 , 0 , 0 , 0 ,
                     ADDTIME('00:00:01', '00:00:05'))
             """
             cursor.execute(query, (name, grade, school, password, prefer_subject))
