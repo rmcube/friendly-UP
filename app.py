@@ -172,20 +172,7 @@ def get_user2():
         conn = get_db_connection()
         data = request.get_json()
         user_id = data.get("user_id")
-        value = data.get("value")
-
-        if value not in [
-            "name",
-            "grade",
-            "school",
-            "password",
-            "prefer_subject",
-        ]:  # 유효한 필드인지 확인
-            return jsonify({"message": f"Invalid field: {value}"}), 400
-
-        query_string = (
-            f"SELECT {value} FROM user WHERE user_id = %s"  # 문자열 포매팅으로 필드 이름 설정
-        )
+        query_string = f"SELECT school and grade and prefer_subject FROM user WHERE user_id = %s"  # 문자열 포매팅으로 필드 이름 설정
         with conn.cursor() as cur:
             cur.execute(
                 query_string,
