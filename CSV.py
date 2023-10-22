@@ -20,9 +20,9 @@ cursor = conn.cursor()
 
 for i, row in df.iterrows():
     query = """
-        INSERT INTO problems (problem_id, school, grade, difficulty, subject,
+        INSERT INTO problems (school, grade, difficulty, subject,
                               question, answer, ans1, ans2, ans3)
-        VALUES (NULL,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
     """
 
     cursor.execute(
