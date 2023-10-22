@@ -5,3 +5,6 @@ d.dSYM/
 flask_test/
 pakseokjune/
 .env
+*/_pycache_/
+*.swap
+*.save
