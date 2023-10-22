@@ -19,7 +19,7 @@ CREATE TABLE user (
 	school VARCHAR(50) NULL,
 	created_at DATETIME NOT NULL,
 	updated_at DATETIME NULL,
-	password INT NOT NULL,
+	password VARCHAR(50) NOT NULL,
 	cash INT NULL,
 	prefer_subject VARCHAR(50) NOT NULL,
 	playtime TIME 	NULL,
