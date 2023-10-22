@@ -40,20 +40,18 @@ def signup():
     ):
         return jsonify({"message": "모든 필드를 입력해야 합니다."}), 400
 
- # 중복된 이름 확인
+    # 중복된 이름 및 비밀번호 확인
     with conn.cursor() as cursor:
-        query = "SELECT * FROM user WHERE name = %s"
-        cursor.execute(query, name)
+        query = "SELECT * FROM user WHERE name = %s AND password = %s"
+        cursor.execute(query, (name, password))
         existing_user = cursor.fetchone()
 
     if existing_user:
-        return jsonify({"message": "중복된 이름입니다. 다른 이름을 사용해주세요."}), 400
-
-
+        return jsonify({"message": "중복된 이름과 비밀번호입니다. 다른 이름 또는 비밀번호를 사용해주세요."}), 400
     try:
         # 데이터베이스에 저장
         with conn.cursor() as cursor:
-            query = "INSERT INTO user (name, grade, school, password, prefer_subject) VALUES (%s, %s, %s, %s, %s)"
+            query = "INSERT INTO user (name, grade, school, password, prefer_subject, created_at) VALUES (%s, %s, %s, %s, %s, NOW())"
             cursor.execute(query, (name, grade, school, password, prefer_subject))
             conn.commit()
 
