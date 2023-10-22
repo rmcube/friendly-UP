@@ -279,16 +279,20 @@ def check_update_time():
     if not result:
         return jsonify({"message": "No such user"}), 404
 
-    last_updated_at = result["updated_at"]
+    last_updated_at_date = result["updated_at"].date()  # Extract date part only
 
-    # Calculate the difference between now and the last update time
-    time_difference_in_seconds = (datetime.now() - last_updated_at).total_seconds()
+    # Check if the last update date is different from today's date
+    if last_updated_at_date != datetime.today().date():  # Compare dates only, not times
+        message = "OK"
+
+    else:
+        message = "NO"
 
     # Close connection
     cursor.close()
     db_conn.close()
 
-    return jsonify({"time_difference_in_seconds": time_difference_in_seconds}), 200
+    return jsonify({"message": message}), 200
 
 
 if __name__ == "__main__":
