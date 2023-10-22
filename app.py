@@ -205,6 +205,10 @@ def get_user(user_id):
             if user is None:
                 return jsonify({"message": "해당 user_id에 해당하는 유저 정보가 없습니다."}), 404
 
+            # timedelta 객체를 문자열로 변환
+            if "playtime" in user and isinstance(user["playtime"], datetime.timedelta):
+                user["playtime"] = str(user["playtime"])
+
             # 조회한 유저 정보 반환
             return jsonify(user), 200
 
