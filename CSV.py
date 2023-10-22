@@ -11,7 +11,7 @@ conn = pymysql.connect(
 )
 
 # 데이터를 적재할 CSV 파일 경로 지정 (경로는 실제 환경에 맞게 변경해야 합니다.)
-csv_file_path = '/friendly'
+csv_file_path = "/friendly-UP/CSV_LIST/문제_데이터.csv"
 
 # pandas를 사용하여 CSV 파일 읽기
 df = pd.read_csv(csv_file_path)
@@ -24,11 +24,22 @@ for i, row in df.iterrows():
                               question, answer, ans1, ans2, ans3)
         VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
     """
-    
-    cursor.execute(query,(row['school'], row['grade'], row['difficulty'], 
-                          row['subject'], row['question'], row['answer'], row['question']
-                          row['ans1'], row['ans2'],row['ans3']))
-    
+
+    cursor.execute(
+        query,
+        (
+            row["학교"],
+            row["학년"],
+            row["난이도"],
+            row["과목"],
+            row["문제"],
+            row["정답"],
+            row["선택1"],
+            row["선택2"],
+            row["선택3"],
+        ),
+    )
+
 conn.commit()
 cursor.close()
 conn.close()
