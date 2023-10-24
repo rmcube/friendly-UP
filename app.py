@@ -31,7 +31,7 @@ app.register_blueprint(login_routes)
 
 
 # 문제 불러오기 (차현우 임시 제작)
-def random_problems(school, grade, preferred_subject):
+def random_problems(school, grade, preferred_subject, difficulty):
     conn = get_db_connection()
     cursor = conn.cursor()
     selected_problems = []
@@ -45,15 +45,28 @@ def random_problems(school, grade, preferred_subject):
             num_problems_to_select = 1
 
         # problems 테이블에서 해당 과목에 해당하는 문제들을 랜덤하게 선택합니다.
-        query = """
-            SELECT *
-            FROM problems
-            WHERE school=%s AND grade=%s AND subject=%s 
-            ORDER BY RAND()
-            LIMIT %s
-        """
+        if difficulty != 1:
+            query = """
+                SELECT *
+                FROM problems
+                WHERE school=%s AND grade=%s AND subject=%s AND difficulty=%s
+                ORDER BY RAND()
+                LIMIT %s
+            """
 
-        cursor.execute(query, (school, grade, subject, num_problems_to_select))
+            cursor.execute(
+                query, (school, grade, subject, difficulty, num_problems_to_select)
+            )
+        else:
+            query = """
+                SELECT *
+                FROM problems
+                WHERE school=%s AND grade=%s AND subject=%s 
+                ORDER BY RAND()
+                LIMIT %s
+            """
+
+            cursor.execute(query, (school, grade, subject, num_problems_to_select))
 
         selected_problems.extend(cursor.fetchall())
 
@@ -69,8 +82,8 @@ def RETURN_PROBLEM():
     school = data["school"]
     grade = data["grade"]
     subject = data["prefer_subject"]
-
-    selected_proproblems = random_problems(school, grade, subject)
+    difficulty = data["difficulty"]
+    selected_proproblems = random_problems(school, grade, subject, difficulty)
 
     return jsonify(selected_proproblems), 200
 
