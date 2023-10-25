@@ -35,6 +35,16 @@ def send_friend_request():
     friend_id = request.json["friend_id"]
 
     try:
+        # friendID로부터 user_id 얻기
+        query = "SELECT user_id FROM user WHERE friendID = %s"
+        cursor.execute(query, (friend_id,))
+        result = cursor.fetchone()
+
+        if result is None:
+            return jsonify({"error": "Friend not found."}), 404
+
+        friend_id = result["user_id"]
+
         # 친구 요청 저장
         query = "INSERT INTO friends (user_id, friend_id, request_status, created_at, updated_at) VALUES (%s, %s, 'pending', NOW(), NOW())"
         cursor.execute(query, (user_id, friend_id))
