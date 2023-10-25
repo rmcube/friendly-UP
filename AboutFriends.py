@@ -156,6 +156,29 @@ def get_user(user_id):
     conn = get_db_connection()
     try:
         cursor = conn.cursor()
+        check_query = "SELECT * FROM friends WHERE (user_id = %s OR friend_id = %s) AND request_status = 'pending'"
+        cursor.execute(check_query, (user_id, user_id))
+        check_result = cursor.fetchall()
+
+        if check_result is None or len(check_result) == 0:
+            return jsonify({"message": "No friends found for the given user_id."}), 200
+
+        # 조회한 유저 정보 반환
+        return jsonify(check_result), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+    finally:
+        cursor.close()
+        conn.close()
+
+
+@login_routes.route("friends/<int:user_id>", methods=["GET"])
+def get_user(user_id):
+    conn = get_db_connection()
+    try:
+        cursor = conn.cursor()
         check_query = "SELECT * FROM friends WHERE (user_id = %s OR friend_id = %s) AND request_status = 'friends'"
         cursor.execute(check_query, (user_id, user_id))
         check_result = cursor.fetchall()
