@@ -60,11 +60,10 @@ def signup():
             VALUES (%s,%s,%s,%s,%s,%s,NOW(),0 ,0 , 0 , 0 , 0 , 0 ,
                     0)
             """
-            print(name, grade, school, password, prefer_subject, friend_id)
-            cursor.execute(
-                query, (name, grade, school, password, prefer_subject, friend_id)
-            )
-            conn.commit()
+        cursor.execute(
+            query, (name, grade, school, password, prefer_subject, friend_id)
+        )
+        conn.commit()
 
         return jsonify({"message": "회원 가입이 완료되었습니다."}), 201
     except Exception as e:
