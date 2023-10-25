@@ -64,18 +64,30 @@ def accept_friend_request():
     db_conn = get_db_connection()
     cursor = db_conn.cursor()
 
-    user_id = request.json["user_id"]
     friend_id = request.json["friend_id"]
 
     try:
+        # 수락할 요청 찾기
+        select_query = (
+            "SELECT * FROM friends WHERE friend_id = %s AND request_status = 'pending'"
+        )
+        cursor.execute(select_query, (friend_id,))
+        result = cursor.fetchone()
+
+        # 해당 요청이 없으면 에러 메시지 반환
+        if result is None:
+            return jsonify({"error": "No pending request found."}), 404
+
         # 수락한 요청 및 대기 중인(dummy) 데이터 삭제
         delete_query = "DELETE FROM friends WHERE (request_status = 'accepted' OR request_status = 'pending') AND ((user_id = %s AND friend_id = %s) OR (user_id = %s AND friend_id = %s))"
-        cursor.execute(delete_query, (user_id, friend_id, friend_id, user_id))
+        cursor.execute(
+            delete_query, (result[user_id], friend_id, friend_id, result[user_id])
+        )
         db_conn.commit()
 
         # 새로운 친구 요청 상태 추가
         insert_query = "INSERT INTO friends (request_status, user_id, friend_id, created_at, updated_at) VALUES ('friends', %s, %s, NOW(), NOW())"
-        cursor.execute(insert_query, (user_id, friend_id))
+        cursor.execute(insert_query, (result[user_id], friend_id))
         db_conn.commit()
 
         return jsonify({"message": "친구 요청을 수락했습니다."}), 200
