@@ -17,6 +17,7 @@ CREATE TABLE user (
 	name VARCHAR(50) NOT NULL,
 	grade INT NOT NULL,
 	school VARCHAR(50) NULL,
+    friendID VARCHAR(50) NULL,
 	created_at DATETIME NOT NULL,
 	updated_at DATETIME NULL,
 	password VARCHAR(50) NOT NULL,

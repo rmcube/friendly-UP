@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request, Blueprint
 import pymysql
+import random
 
 # blueprint는 메인(app.py)로 다른 파일들(class)를 묶어주는 역할을 한다
 login_routes = Blueprint("member", __name__, url_prefix="/api/user")
@@ -35,7 +36,6 @@ def signup():
     password = data.get("password")
     prefer_subject = data.get("prefer_subject")
 
-    # 필수 필드 확인
     if (
         name is None
         or grade is None
@@ -45,7 +45,6 @@ def signup():
     ):
         return jsonify({"message": "모든 필드를 입력해야 합니다."}), 400
 
-    # 중복된 이름 및 비밀번호 확인
     with conn.cursor() as cursor:
         query = "SELECT * FROM user WHERE name = %s AND password = %s"
         cursor.execute(query, (name, password))
@@ -53,29 +52,34 @@ def signup():
 
     if existing_user:
         return jsonify({"message": "중복된 이름과 비밀번호입니다. 다른 이름 또는 비밀번호를 사용해주세요."}), 400
+
     try:
-        # 데이터베이스에 저장
+        # friendID 값 생성 및 중복 확인
+        while True:
+            friend_id = f"{name}#{random.randrange(10000)}"
+            with conn.cursor() as cursor:
+                query = "SELECT * FROM user WHERE friendID = %s"
+                cursor.execute(query, (friend_id,))
+                existing_friend = cursor.fetchone()
+            if not existing_friend:
+                break
+
         with conn.cursor() as cursor:
             query = """
             INSERT INTO user 
-            (name, grade, school, password, prefer_subject, created_at, cash,
+            (name, grade, school, password, prefer_subject, friendID, created_at, cash,
             total_cash, problem_num, problem_solved,
             share_sum,
             send_sum,
             date_sum,
             playtime)
-            VALUES (%s,%s,%s,%s,%s,NOW(),0 ,0 , 0 , 0 , 0 , 0 , 0 ,
+            VALUES (%s,%s,%s,%s,%s,%s,NOW(),0 ,0 , 0 , 0 , 0 , 0 ,
                     0)
             """
-            cursor.execute(query, (name, grade, school, password, prefer_subject))
+            cursor.execute(
+                query, (name, grade, school, password, prefer_subject, friend_id)
+            )
             conn.commit()
-
-        # with conn.cursor() as cursor:
-        #     sql = "SELECT * FROM user"
-        #     cursor.execute(sql)
-        #     result = cursor.fetchall()
-        #     print(cursor.rowcount)
-        #     print(result)
 
         return jsonify({"message": "회원 가입이 완료되었습니다."}), 201
     except Exception as e:
