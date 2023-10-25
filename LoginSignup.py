@@ -3,7 +3,7 @@ import pymysql
 import random
 
 # blueprint는 메인(app.py)로 다른 파일들(class)를 묶어주는 역할을 한다
-login_routes = Blueprint("member", __name__, url_prefix="/api/user")
+login_routes = Blueprint("member2", __name__, url_prefix="/api/user")
 
 # MySQL 설정
 db_connection = {
