@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 from datetime import datetime
 from LoginSignup import login_routes
+from AboutFriends import login_routes
 from query import query
 
 load_dotenv()
