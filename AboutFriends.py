@@ -59,13 +59,13 @@ def accept_friend_request():
 
     try:
         # 친구 요청 상태 업데이트
-        query = "UPDATE friends SET request_status = 'accepted' WHERE user_id = %s AND friend_id = %s"
+        query = "UPDATE friends SET request_status = 'friends' WHERE user_id = %s AND friend_id = %s"
         cursor.execute(query, (friend_id, user_id))
         db_conn.commit()
 
-        # 친구 관계 추가
-        query = "INSERT INTO friends (user_id, friend_id, request_status, created_at, updated_at) VALUES (%s, %s, 'accepted', NOW(), NOW())"
-        cursor.execute(query, (user_id, friend_id))
+        # 수락한 요청 및 대기 중인(dummy) 데이터 삭제
+        delete_query = "DELETE FROM friends WHERE (request_status = 'accepted' OR request_status = 'pending') AND ((user_id = %s AND friend_id = %s) OR (user_id = %s AND friend_id = %s))"
+        cursor.execute(delete_query, (user_id, friend_id, friend_id, user_id))
         db_conn.commit()
 
         return jsonify({"message": "친구 요청을 수락했습니다."}), 200
