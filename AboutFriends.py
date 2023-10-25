@@ -151,6 +151,28 @@ def delete_expired_friend_requests():
         db_conn.close()
 
 
+@login_routes.route("/api/user/friends_post/<int:user_id>", methods=["GET"])
+def get_user(user_id):
+    try:
+        # 데이터베이스 연결 및 쿼리 실행
+        conn = get_db_connection()
+        check_query = "SELECT * FROM friends WHERE (user_id = %s OR friend_id = %s) AND request_status = 'friends'"
+        conn.cursor.execute(check_query, (user_id, user_id))
+        check_result = conn.cursor.fetchone()
+
+        if check_result is None:
+            return jsonify({"message": "해당 user_id에 해당하는 유저 정보가 없습니다."}), 404
+
+            # 조회한 유저 정보 반환
+        return jsonify(check_result), 200
+
+    except Exception as e:
+        return jsonify({"message": str(e)}), 500
+
+    finally:
+        conn.close()
+
+
 # 스케줄러 설정
 scheduler = BackgroundScheduler()
 scheduler.add_job(delete_expired_friend_requests, "interval", hours=1)
