@@ -65,15 +65,14 @@ CREATE TABLE problems (
 """,
     """
 CREATE TABLE friends (
-	relation_id	int not null AUTO_INCREMENT primary key ,
+    relation_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     request_status VARCHAR(20) NOT NULL,
-	user_id2 int not null references user(user_ID),  
-	user_ID3 int not null references user(user_ID),  
-	Created_at datetime not null ,  
-	UPDATED_AT datetime not null ,
-    FOREIGN KEY (user_id2) REFERENCES user(user_id),
-    FOREIGN KEY (user_id3) REFERENCES user(user_id)
-
+    user_id INT NOT NULL REFERENCES user(user_id),
+    friend_id INT NOT NULL REFERENCES user(user_id),
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
+    FOREIGN KEY (friend_id) REFERENCES user(user_id)
 );
 """,
     """
