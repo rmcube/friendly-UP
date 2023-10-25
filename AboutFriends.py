@@ -149,7 +149,7 @@ def reject_friend_request():
         delete_query = "DELETE FROM friends WHERE (request_status = 'accepted' OR request_status = 'pending') AND ((user_id = %s AND friend_id = %s) OR (user_id = %s AND friend_id = %s))"
         cursor.execute(delete_query, (user_id, friend_id, friend_id, user_id))
         db_conn.commit()
-        return jsonify({"message": "친구 요청을 수락했습니다."}), 200
+        return jsonify({"message": "친구 요청을 거절했습니다."}), 200
     except Exception as e:
         db_conn.rollback()
         return jsonify({"error": str(e)}), 500
