@@ -51,17 +51,15 @@ def signup():
         with conn.cursor() as cursor:
             query = """
             INSERT INTO user 
-            (name, grade, school, password, prefer_subject, created_at, friendID, cash,
-            total_cash, problem_num, problem_solved,
+            (name, grade, school, friendID, created_at, password, cash, prefer_subject, playtime, 
+            total_cash, date_sum, ,problem_num, problem_solved,
             share_sum,
-            send_sum,
-            date_sum,
-            playtime)
+            send_sum)
             VALUES (%s,%s,%s,%s,%s,NOW(),%s,0 ,0 , 0 , 0 , 0 , 0 ,
                     0)
             """
             cursor.execute(
-                query, (name, grade, school, password, prefer_subject, friend_id)
+                query, (name, grade, school, friend_id, password, prefer_subject)
             )
             conn.commit()
 
