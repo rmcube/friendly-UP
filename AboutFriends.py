@@ -151,7 +151,7 @@ def delete_expired_friend_requests():
         db_conn.close()
 
 
-@login_routes.route("/api/user/friends_post/<int:user_id>", methods=["GET"])
+@login_routes.route("friends_post/<int:user_id>", methods=["GET"])
 def get_user(user_id):
     conn = get_db_connection()
     try:
