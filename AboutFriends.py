@@ -156,8 +156,10 @@ def get_friendsPOST(user_id):
     conn = get_db_connection()
     try:
         cursor = conn.cursor()
-        check_query = "SELECT * FROM friends WHERE (user_id = %s OR friend_id = %s) AND request_status = 'pending'"
-        cursor.execute(check_query, (user_id, user_id))
+        check_query = (
+            "SELECT * FROM friends WHERE friend_id = %s AND request_status = 'pending'"
+        )
+        cursor.execute(check_query, (user_id,))
         check_result = cursor.fetchall()
 
         if check_result is None or len(check_result) == 0:
