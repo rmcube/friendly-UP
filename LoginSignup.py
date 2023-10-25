@@ -36,6 +36,15 @@ def signup():
     password = data.get("password")
     prefer_subject = data.get("prefer_subject")
 
+    # 중복 회원 확인
+    with conn.cursor() as cursor:
+        query = "SELECT * FROM user WHERE name = %s AND password = %s"
+        cursor.execute(query, (name, password))
+        existing_user = cursor.fetchone()
+
+    if existing_user:
+        return jsonify({"message": "이미 존재하는 회원입니다."}), 400
+
     # friendID 값 생성 및 중복 확인
     while True:
         random_value = random.randrange(10000)
