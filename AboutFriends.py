@@ -58,22 +58,17 @@ def accept_friend_request():
     friend_id = request.json["friend_id"]
 
     try:
-        # 친구 요청 상태 업데이트
-        query = "UPDATE friends SET request_status = 'friends' WHERE user_id = %s AND friend_id = %s"
-        cursor.execute(query, (friend_id, user_id))
-        db_conn.commit()
-
         # 수락한 요청 및 대기 중인(dummy) 데이터 삭제
         delete_query = "DELETE FROM friends WHERE (request_status = 'accepted' OR request_status = 'pending') AND ((user_id = %s AND friend_id = %s) OR (user_id = %s AND friend_id = %s))"
         cursor.execute(delete_query, (user_id, friend_id, friend_id, user_id))
         db_conn.commit()
 
-        # friends 테이블에서 변경된 데이터 확인
-        select_query = "SELECT * FROM friends"
-        cursor.execute(select_query)
-        result = cursor.fetchall()
+        # 새로운 친구 요청 상태 추가
+        insert_query = "INSERT INTO friends (request_status, user_id, friend_id, created_at, updated_at) VALUES ('friends', %s, %s, NOW(), NOW())"
+        cursor.execute(insert_query, (user_id, friend_id))
+        db_conn.commit()
 
-        return jsonify({"message": "친구 요청을 수락했습니다.", "result": result}), 200
+        return jsonify({"message": "친구 요청을 수락했습니다."}), 200
     except Exception as e:
         db_conn.rollback()
         return jsonify({"error": str(e)}), 500
