@@ -45,9 +45,17 @@ def send_friend_request():
 
         friend_id = result["user_id"]
 
-        # 친구 요청 상태 확인
-        check_query = "SELECT * FROM friends WHERE ((user_id = %s AND friend_id = %s) OR (user_id = %s AND friend_id = %s)) AND request_status = 'pending'"
+        # 이미 친구인지 확인
+        check_query = "SELECT * FROM friends WHERE ((user_id = %s AND friend_id = %s) OR (user_id = %s AND friend_id = %s)) AND request_status = 'friends'"
         cursor.execute(check_query, (user_id, friend_id, friend_id, user_id))
+        check_result = cursor.fetchone()
+
+        if check_result is not None:
+            return jsonify({"message": "Already friends."}), 400
+
+        # 친구 요청 상태 확인
+        check_query = "SELECT * FROM friends WHERE user_id = %s AND friend_id = %s AND request_status = 'pending'"
+        cursor.execute(check_query, (user_id, friend_id))
         check_result = cursor.fetchone()
 
         if check_result is not None:
