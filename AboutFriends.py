@@ -68,7 +68,12 @@ def accept_friend_request():
         cursor.execute(delete_query, (user_id, friend_id, friend_id, user_id))
         db_conn.commit()
 
-        return jsonify({"message": "친구 요청을 수락했습니다."}), 200
+        # friends 테이블에서 변경된 데이터 확인
+        select_query = "SELECT * FROM friends"
+        cursor.execute(select_query)
+        result = cursor.fetchall()
+
+        return jsonify({"message": "친구 요청을 수락했습니다.", "result": result}), 200
     except Exception as e:
         db_conn.rollback()
         return jsonify({"error": str(e)}), 500
