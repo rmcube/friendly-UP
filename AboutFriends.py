@@ -36,9 +36,8 @@ def send_friend_request():
 
     try:
         # 친구 요청 저장
-        query = "INSERT INTO friends (user_id, friend_id, request_status, created_at) VALUES (%s, %s, 'pending', %s)"
-        current_time = datetime.now()
-        cursor.execute(query, (user_id, friend_id, current_time))
+        query = "INSERT INTO friends (user_id, friend_id, request_status, created_at, updated_at) VALUES (%s, %s, 'pending', NOW(), NOW())"
+        cursor.execute(query, (user_id, friend_id))
         db_conn.commit()
 
         return jsonify({"message": "OK"}), 200
@@ -65,7 +64,7 @@ def accept_friend_request():
         db_conn.commit()
 
         # 친구 관계 추가
-        query = "INSERT INTO friends (user_id2, user_id3) VALUES (%s, %s)"
+        query = "INSERT INTO friends (user_id, friend_id, request_status, created_at, updated_at) VALUES (%s, %s, 'accepted', NOW(), NOW())"
         cursor.execute(query, (user_id, friend_id))
         db_conn.commit()
 
