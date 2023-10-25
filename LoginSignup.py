@@ -33,7 +33,7 @@ def signup():
     name = data.get("name")
     grade = data.get("grade")
     school = data.get("school")
-    password = data.get("password")  # 정수형을 문자열로 변환
+    password = data.get("password")
     prefer_subject = data.get("prefer_subject")
 
     # friendID 값 생성 및 중복 확인
@@ -51,16 +51,15 @@ def signup():
         with conn.cursor() as cursor:
             query = """
             INSERT INTO user 
-            (name, grade, school, password, prefer_subject, friendID, created_at, cash,
+            (name, grade, school, password, prefer_subject, created_at, friendID, cash,
             total_cash, problem_num, problem_solved,
             share_sum,
             send_sum,
             date_sum,
             playtime)
-            VALUES (%s,%s,%s,%s,%s,%s,NOW(),0 ,0 , 0 , 0 , 0 , 0 ,
+            VALUES (%s,%s,%s,%s,%s,NOW(),%s,0 ,0 , 0 , 0 , 0 , 0 ,
                     0)
             """
-
             cursor.execute(
                 query, (name, grade, school, password, prefer_subject, friend_id)
             )
