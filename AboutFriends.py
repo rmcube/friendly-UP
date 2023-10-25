@@ -163,8 +163,10 @@ def delete_expired_friend_requests():
     cursor = db_conn.cursor()
 
     try:
-        # 1시간이 경과한 요청 정보 삭제
-        query = "DELETE FROM friends WHERE created_at < %s"
+        # 1시간이 경과한 "pending" 상태의 요청 정보 삭제
+        query = (
+            "DELETE FROM friends WHERE created_at < %s AND request_status = 'pending'"
+        )
         expiration_time = datetime.now() - timedelta(hours=1)
         cursor.execute(query, expiration_time)
         db_conn.commit()
