@@ -33,7 +33,7 @@ def signup():
     name = data.get("name")
     grade = data.get("grade")
     school = data.get("school")
-    password = data.get("password")
+    password = str(data.get("password"))
     prefer_subject = data.get("prefer_subject")
 
     if (
