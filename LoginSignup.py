@@ -33,37 +33,21 @@ def signup():
     name = data.get("name")
     grade = data.get("grade")
     school = data.get("school")
-    password = str(data.get("password"))
+    password = str(data.get("password"))  # 정수형을 문자열로 변환
     prefer_subject = data.get("prefer_subject")
 
-    if (
-        name is None
-        or grade is None
-        or school is None
-        or password is None
-        or prefer_subject is None
-    ):
-        return jsonify({"message": "모든 필드를 입력해야 합니다."}), 400
-
-    with conn.cursor() as cursor:
-        query = "SELECT * FROM user WHERE name = %s AND password = %s"
-        cursor.execute(query, (name, password))
-        existing_user = cursor.fetchone()
-
-    if existing_user:
-        return jsonify({"message": "중복된 이름과 비밀번호입니다. 다른 이름 또는 비밀번호를 사용해주세요."}), 400
+    # friendID 값 생성 및 중복 확인
+    while True:
+        random_value = random.randrange(10000)
+        friend_id = f"{name}#{random_value}"
+        with conn.cursor() as cursor:
+            query = "SELECT * FROM user WHERE friendID = %s"
+            cursor.execute(query, (friend_id,))
+            existing_friend = cursor.fetchone()
+        if not existing_friend:
+            break
 
     try:
-        # friendID 값 생성 및 중복 확인
-        while True:
-            friend_id = f"{name}#{random.randrange(10000)}"
-            with conn.cursor() as cursor:
-                query = "SELECT * FROM user WHERE friendID = %s"
-                cursor.execute(query, (friend_id,))
-                existing_friend = cursor.fetchone()
-            if not existing_friend:
-                break
-
         with conn.cursor() as cursor:
             query = """
             INSERT INTO user 
