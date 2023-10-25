@@ -60,6 +60,7 @@ def signup():
             VALUES (%s,%s,%s,%s,%s,%s,NOW(),0 ,0 , 0 , 0 , 0 , 0 ,
                     0)
             """
+            print(name, grade, school, password, prefer_subject, friend_id)
             cursor.execute(
                 query, (name, grade, school, password, prefer_subject, friend_id)
             )
