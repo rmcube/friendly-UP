@@ -152,7 +152,7 @@ def delete_expired_friend_requests():
 
 
 @login_routes.route("friends_post/<int:user_id>", methods=["GET"])
-def get_user(user_id):
+def get_friendsPOST(user_id):
     conn = get_db_connection()
     try:
         cursor = conn.cursor()
@@ -175,7 +175,7 @@ def get_user(user_id):
 
 
 @login_routes.route("friends/<int:user_id>", methods=["GET"])
-def get_user(user_id):
+def get_friends(user_id):
     conn = get_db_connection()
     try:
         cursor = conn.cursor()
