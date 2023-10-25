@@ -33,7 +33,7 @@ def signup():
     name = data.get("name")
     grade = data.get("grade")
     school = data.get("school")
-    password = str(data.get("password"))  # 정수형을 문자열로 변환
+    password = data.get("password")  # 정수형을 문자열로 변환
     prefer_subject = data.get("prefer_subject")
 
     # friendID 값 생성 및 중복 확인
