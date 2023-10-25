@@ -45,6 +45,14 @@ def send_friend_request():
 
         friend_id = result["user_id"]
 
+        # 친구 요청 상태 확인
+        check_query = "SELECT * FROM friends WHERE ((user_id = %s AND friend_id = %s) OR (user_id = %s AND friend_id = %s)) AND request_status = 'pending'"
+        cursor.execute(check_query, (user_id, friend_id, friend_id, user_id))
+        check_result = cursor.fetchone()
+
+        if check_result is not None:
+            return jsonify({"message": "Already sent a request."}), 400
+
         # 친구 요청 저장
         query = "INSERT INTO friends (user_id, friend_id, request_status, created_at, updated_at) VALUES (%s, %s, 'pending', NOW(), NOW())"
         cursor.execute(query, (user_id, friend_id))
