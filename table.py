@@ -66,10 +66,13 @@ CREATE TABLE problems (
     """
 CREATE TABLE friends (
 	relation_id	int not null AUTO_INCREMENT primary key ,
+    request_status VARCHAR(20) NOT NULL,
 	user_id2 int not null references user(user_ID),  
 	user_ID3 int not null references user(user_ID),  
 	Created_at datetime not null ,  
-	UPDATED_AT datetime not null  
+	UPDATED_AT datetime not null ,
+    FOREIGN KEY (user_id2) REFERENCES user(user_id),
+    FOREIGN KEY (user_id3) REFERENCES user(user_id)
 
 );
 """,
