@@ -131,3 +131,31 @@ def get_shared_solutions(user_id):
     finally:
         cursor.close()
         db_conn.close()
+
+
+@login_routes.route("/delete_shared_solutions/<int:recipient_id>", methods=["DELETE"])
+def delete_shared_solutions(recipient_id):
+    db_conn = get_db_connection()
+    cursor = db_conn.cursor()
+
+    try:
+        query = """
+        DELETE FROM FriendMessage
+        WHERE recipient_id = %s AND type = '해법 공유'
+        """
+        cursor.execute(query, (recipient_id,))
+
+        db_conn.commit()  # 변경 사항을 데이터베이스에 반영합니다.
+
+        # 삭제된 row의 수를 확인합니다.
+        if cursor.rowcount == 0:
+            return jsonify({"message": "해당 recipient_id를 가진 해법 공유 메시지가 없습니다."}), 404
+        else:
+            return jsonify({"message": f"{cursor.rowcount}개의 해법 공유 메시지가 삭제되었습니다."}), 200
+
+    except Exception as e:
+        return jsonify({"message": str(e)}), 400
+
+    finally:
+        cursor.close()
+        db_conn.close()
