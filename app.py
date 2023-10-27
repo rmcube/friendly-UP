@@ -117,6 +117,35 @@ def inf_edit():
     return jsonify({"message": "Success"}), 200
 
 
+# friendID 로 user_id 조회
+@app.route("/api/user/get_user_id", methods=["POST"])
+def get_user_id():
+    db_conn = get_db_connection()
+    cursor = db_conn.cursor()
+    data = request.get_json()
+
+    friendID = data.get("friendID")
+
+    query = """
+    SELECT user_id
+    FROM user
+    WHERE friendID = %s;
+    """
+    values = (friendID,)
+
+    cursor.execute(query, values)
+    result = cursor.fetchone()
+
+    if result:
+        user_id = result[0]
+        return jsonify({"user_id": user_id}), 200
+    else:
+        return jsonify({"message": "User not found"}), 404
+
+    cursor.close()
+    db_conn.close()
+
+
 # 값 추가 ( 차현우 임시 제작 )
 @app.route("/api/user/up_value", methods=["POST"])
 def upValue():
