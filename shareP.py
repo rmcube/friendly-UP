@@ -43,20 +43,29 @@ def share_solution():
         )
         sender_result = cursor.fetchone()
 
-        # recipient_id에 대한 shared_at 값을 가져옴
-        cursor.execute("SELECT shared_at FROM user WHERE user_id = %s", (recipient_id,))
-        recipient_result = cursor.fetchone()
+        if sender_result is None:
+            return jsonify({"message": "보내는 사람의 정보를 찾을 수 없습니다."}), 400
 
         sender_shared_at = sender_result["shared_at"]
         sender_updated_at = sender_result["updated_at"]
-        recipient_shared_at = recipient_result["shared_at"]
+
+        # recipient_id에 대한 get_at 값을 가져옴
+        cursor.execute("SELECT get_at FROM user WHERE user_id = %s", (recipient_id,))
+        recipient_result = cursor.fetchone()
+
+        recipient_get_at = (
+            recipient_result["get_at"] if recipient_result is not None else None
+        )
 
         # sender의 shared_at 값이 오늘 날짜와 같거나, sender의 updated_at 값이 오늘 날짜가 아니거나,
-        # recipient의 shared_at 값이 오늘 날짜라면 오류 메시지 반환
+        # recipient의 get_at 값이 오늘 날짜라면 오류 메시지 반환
         if (
             sender_shared_at.date() == datetime.today().date()
             or sender_updated_at.date() != datetime.today().date()
-            or recipient_shared_at.date() == datetime.today().date()
+            or (
+                recipient_get_at is not None
+                and recipient_get_at.date() == datetime.today().date()
+            )
         ):
             return (
                 jsonify(
