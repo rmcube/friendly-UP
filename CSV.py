@@ -32,7 +32,7 @@ for filename in os.listdir(csv_directory_path):
 
         try:
             # pandas를 사용하여 CSV 파일 읽기
-            df = pd.read_csv(csv_file_path, dtype={"학년": int, "난이도": int})
+            df = pd.read_csv(csv_file_path, dtype={"학년": str, "난이도": str})
 
             # 열 이름을 영문으로 변경
             df = df.rename(
@@ -49,22 +49,10 @@ for filename in os.listdir(csv_directory_path):
                 }
             )
 
-            # 적재할 열 목록 정의
-            columns = [
-                "school",
-                "grade",
-                "difficulty",
-                "subject",
-                "question",
-                "answer",
-                "ans1",
-                "ans2",
-                "ans3",
-            ]
-
             for _, row in df.iterrows():
-                # 열 이름에 따라 데이터를 가져옵니다
-                data = [row[column] for column in columns]
+                # 공백이 있는 경우 해당 데이터를 건너뜁니다
+                if any(pd.isnull(row)):
+                    continue
 
                 query = """
                     INSERT INTO problems (school, grade, difficulty, subject,
@@ -74,7 +62,17 @@ for filename in os.listdir(csv_directory_path):
 
                 cursor.execute(
                     query,
-                    tuple(data),
+                    (
+                        row["school"],
+                        row["grade"],
+                        row["difficulty"],
+                        row["subject"],
+                        row["question"],
+                        row["answer"],
+                        row["ans1"],
+                        row["ans2"],
+                        row["ans3"],
+                    ),
                 )
 
             conn.commit()
