@@ -244,6 +244,33 @@ def get_goPB(user_id):
         db_conn.close()
 
 
+@login_routes.route("/get_realPB/<int:problem_id>", methods=["GET"])
+def get_realPB(problem_id):
+    db_conn = get_db_connection()
+    cursor = db_conn.cursor()
+
+    try:
+        query = """
+        SELECT * FROM problems
+        WHERE problem_id = %s'
+        """
+        cursor.execute(query, (problem_id,))
+        results = cursor.fetchall()
+
+        # 결과가 없다면 오류 메시지 반환
+        if not results:
+            return jsonify({"message": "해법 공유 메시지가 없습니다."}), 400
+
+        return jsonify(results), 200
+
+    except Exception as e:
+        return jsonify({"message": str(e)}), 400
+
+    finally:
+        cursor.close()
+        db_conn.close()
+
+
 @login_routes.route("/delete_goPB/<int:recipient_id>", methods=["DELETE"])
 def delete_goPB(recipient_id):
     db_conn = get_db_connection()
