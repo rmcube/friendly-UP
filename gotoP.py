@@ -83,29 +83,21 @@ def send_problems():
         # 문제를 검색합니다.
         cursor.execute(
             """
-            SELECT * FROM problems
+            SELECT DISTINCT problem_id FROM problems
             WHERE school = %s AND grade = %s
             ORDER BY RAND()
             LIMIT 4
             """,
             (school, grade),
         )
-        problems = cursor.fetchall()
+        problem_ids = cursor.fetchall()
 
         # 문제가 없다면 오류 메시지를 반환합니다.
-        if not problems:
+        if not problem_ids:
             return jsonify({"message": "해당 조건에 맞는 문제가 없습니다."}), 400
 
-        # 문제의 id들을 리스트에 저장합니다.
-        problem_ids = [problem["problem_id"] for problem in problems]
-
-        # 문제를 sender와 recipient 사이에 공유합니다.
-        for problem_id in problem_ids:
-            query = """
-            INSERT INTO FriendMessage (type, sender_id, recipient_id, problem_id)
-            VALUES (%s, %s, %s, %s)
-            """
-            cursor.execute(query, ("문제 공유", sender_id, recipient_id, problem_id))
+        # problem_ids를 리스트에 저장합니다.
+        problem_ids = [problem["problem_id"] for problem in problem_ids]
 
         # sender의 shared_at 값을 현재 시간으로 업데이트
         cursor.execute(
@@ -119,7 +111,7 @@ def send_problems():
 
         db_conn.commit()
 
-        return jsonify({"message": "문제가 성공적으로 공유되었습니다."}), 200
+        return jsonify({"problem_ids": problem_ids}), 200
 
     except Exception as e:
         return jsonify({"message": str(e)}), 400
