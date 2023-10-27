@@ -170,7 +170,7 @@ def Get_PB():
     conn = get_db_connection()
     cursor = conn.cursor()
     question = request.json["question"]
-
+    print(question)
     try:
         # question을 사용하여 problem_id 검색
         query = "SELECT problem_id FROM problems WHERE question = %s"
