@@ -20,6 +20,7 @@ CREATE TABLE user (
     friendID VARCHAR(50) NULL,
 	created_at DATETIME NOT NULL,
 	updated_at DATETIME NULL,
+    shared_at DATETIME NULL,
 	password VARCHAR(50) NOT NULL,
 	cash INT NULL,
 	prefer_subject VARCHAR(50) NOT NULL,
@@ -34,6 +35,16 @@ CREATE TABLE user (
 	PRIMARY KEY (user_id)
 );
 """,
+    """CREATE TABLE FriendMessage (
+    id INT AUTO_INCREMENT,
+    type VARCHAR(255),
+    sender_id INT,
+    recipient_id INT,
+    problem_id INT,
+    question TEXT,
+    answer TEXT,
+    PRIMARY KEY (id)
+);""",
     """
 CREATE TABLE solved (
 	solved_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
