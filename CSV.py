@@ -34,13 +34,22 @@ for filename in os.listdir(csv_directory_path):
             # pandas를 사용하여 CSV 파일 읽기
             df = pd.read_csv(csv_file_path, dtype={"학년": int, "난이도": int})
 
-            # 열 이름을 가져온 뒤, 순서를 정렬하여 사용합니다
-            columns = sorted(df.columns)
+            # 열 이름을 영문으로 변경
+            df = df.rename(
+                columns={
+                    "학교": "school",
+                    "학년": "grade",
+                    "난이도": "difficulty",
+                    "과목": "subject",
+                    "문제": "question",
+                    "정답": "answer",
+                    "선택1": "ans1",
+                    "선택2": "ans2",
+                    "선택3": "ans3",
+                }
+            )
 
             for _, row in df.iterrows():
-                # 열 이름에 따라 데이터를 가져옵니다
-                data = [row[column] for column in columns]
-
                 query = """
                     INSERT INTO problems (school, grade, difficulty, subject,
                                           question, answer, ans1, ans2, ans3)
@@ -49,7 +58,17 @@ for filename in os.listdir(csv_directory_path):
 
                 cursor.execute(
                     query,
-                    tuple(data),
+                    (
+                        row["school"],
+                        row["grade"],
+                        row["difficulty"],
+                        row["subject"],
+                        row["question"],
+                        row["answer"],
+                        row["ans1"],
+                        row["ans2"],
+                        row["ans3"],
+                    ),
                 )
 
             conn.commit()
