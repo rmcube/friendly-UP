@@ -1,85 +1,51 @@
-ÇÐ±³,ÇÐ³â,³­ÀÌµµ,°ú¸ñ,¹®Á¦,Á¤´ä,¼±ÅÃ 1,¼±ÅÃ 2,¼±ÅÃ 3
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß ÆÄ¶û »öÀº ¹«¾ùÀÎ°¡¿ä?,blue,yellow,red,black
-ÃÊµîÇÐ±³,1,1,¿µ¾î,³óÀåÀ» ¶æÇÏ´Â ´Ü¾î´Â ¹«¾ùÀÎ°¡¿ä?,farm,pet,fish,bird
-ÃÊµîÇÐ±³,1,1,¿µ¾î,°Ü¿ïÀº ¿µ¾î·Î ¹«¾ùÀÏ±î¿ä?,winter,spring,summer,autumn
-ÃÊµîÇÐ±³,1,1,¿µ¾î,ÇÐ±³¸¦ ¶æÇÏ´Â ¿µ¾î´Â ¹«¾ùÀÏ±î¿ä?,school,park,mall,zoo
-ÃÊµîÇÐ±³,1,1,¿µ¾î,ÇØ°¡ ¶°ÀÖ´Â ³¯¾¾¸¦ ¹¹¶ó°í ÇÒ±î¿ä?,sunny,rainy,windy,cloudy
-ÃÊµîÇÐ±³,1,1,¿µ¾î,¾ÆÀÌ½ºÅ©¸²Àº ¿µ¾î·Î ¹«¾ùÀÏ±î¿ä?,ice cream,pizza,spaghetti,cream
-ÃÊµîÇÐ±³,1,1,¿µ¾î,ÁýÀ» ¶æÇÏ´Â ´Ü¾î´Â ¹«¾ùÀÏ±î¿ä?,home,school,park,restaurant
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß Á¶±×¸¶ÇÏ´Ù ¶ó´Â ¶æÀ» °¡Áø ´Ü¾î´Â ¹«¾ùÀÏ±î¿ä?,tiny,giant,strong,fast
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß ÇØ¹Ù¶ó±â¸¦ ¶æÇÏ´Â ¿µ¾î ´Ü¾î´Â ¹«¾ùÀÎ°¡¿ä?,sunflower,tulip,rose,pumpkin
-ÃÊµîÇÐ±³,1,1,¿µ¾î,°³°¡ Â¢´Â ¼Ò¸®¸¦ ¿µ¾î·Î ÇÏ¸é ¹«¾ùÀÏ±î¿ä?,bark,meow,moo,quack
-ÃÊµîÇÐ±³,1,2,¿µ¾î,´ÙÀ½ Áß ¼ÕÀ» ¶æÇÏ´Â ´Ü¾î´Â ¹«¾ùÀÎ°¡¿ä?,hand,foot,head,leg
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß ¸ðÀÚ¸¦ ÀÇ¹ÌÇÏ´Â ´Ü¾î´Â ¹«¾ùÀÎ°¡¿ä?,hat,socks,gloves,scarf
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß ¹Ù³ª³ª¶ó°í ºÒ¸®´Â °ÍÀº ¹«¾ùÀÏ±î¿ä?,banana,orange,apple,grape
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß ÀÚÀü°Å¸¦ ¶æÇÏ´Â ´Ü¾î´Â ¹«¾ùÀÎ°¡¿ä?,bicycle,ship,train,car
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß º½À» ¶æÇÏ´Â ´Ü¾î´Â ¹«¾ùÀÏ±î¿ä?,Spring,summer,autumn,winter
-ÃÊµîÇÐ±³,1,2,¿µ¾î,´ÙÀ½ Áß ½î´Ù ¶ó´Â ¶æÀ» °¡Áø ´Ü¾î´Â ¹«¾ùÀÏ±î¿ä?,shoot,serve,dribble,tackle
-ÃÊµîÇÐ±³,1,1,¿µ¾î,12¿ù 25ÀÏ¿¡ ±â³äÇÏ´Â ÃàÁ¦´Â ¹«¾ùÀÏ±î¿ä?,christmas,halloween,thanksgiving,new year's day
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß µµ¼­°üÀ» ¶æÇÏ´Â ´Ü¾î´Â ¹«¾ùÀÏ±î¿ä?,library,park,restaurant,stadium
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß ¿¬ÇÊÀ» ¶æÇÏ´Â ´Ü¾î´Â ¹«¾ùÀÏ±î¿ä?,pencil,eraser,ruler,book
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß ÇüÁ¦ °ü°è¸¦ ³ªÅ¸³»´Â ´Ü¾î´Â ¹«¾ùÀÏ±î¿ä?,brother,cousin,uncle,grandpader
-ÃÊµîÇÐ±³,1,2,¿µ¾î,´ÙÀ½ Áß ÆÄ¶ûÀ» ¶æÇÏ´Â »öÀº ¹«¾ùÀÎ°¡¿ä?,blue,yellow,red,black
-ÃÊµîÇÐ±³,1,1,¿µ¾î,»õ¸¦ ¶æÇÏ´Â ´Ü¾î´Â ¹«¾ùÀÎ°¡¿ä?,bird,dog,fish,pig
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß °¡À»Àº ¿µ¾î·Î ¹«¾ùÀÏ±î¿ä?,autumn,spring,summer,winter
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß µ¿¹°¿øÀ» ¶æÇÏ´Â ¿µ¾î´Â ¹«¾ùÀÏ±î¿ä?,zoo,house,restaurant,school
-ÃÊµîÇÐ±³,1,1,¿µ¾î,Èå¸° ³¯¾¾¸¦ ¹¹¶ó°í ÇÒ±î¿ä?,Cloudy,rainy,windy,sunny
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß ½ºÆÄ°ÔÆ¼´Â ¿µ¾î·Î ¹«¾ùÀÏ±î¿ä?,spaghetti,pizza,ice cream,salad
-ÃÊµîÇÐ±³,1,2,¿µ¾î,´ÙÀ½ Áß °ø¿øÀÌ¶ó´Â ¶æÀ» °¡Áø ´Ü¾î´Â ¹«¾ùÀÏ±î¿ä?,park,school,restaurant,house
-ÃÊµîÇÐ±³,1,2,¿µ¾î,´ÙÀ½ Áß ºü¸£´Ù ¶ó´Â ¶æÀ» °¡Áø ´Ü¾î´Â ¹«¾ùÀÏ±î¿ä?,fast,giant,tiny,strong
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß Àå¹Ì¸¦ ¶æÇÏ´Â ¿µ¾î ´Ü¾î´Â ¹«¾ùÀÎ°¡¿ä?,rose,tulip,sunflower,pumpkin
-ÃÊµîÇÐ±³,1,3,¿µ¾î,¿À¸®°¡ ¿ì´Â ¼Ò¸®¸¦ ¿µ¾î·Î ÇÏ¸é ¹«¾ùÀÏ±î¿ä?,quack,meow,moo,bark
-ÃÊµîÇÐ±³,1,2,¿µ¾î,ÀÚµ¿Â÷¶ó´Â ¶æÀ» °¡Áø c_rÀÇ ºóÄ­¿¡ µé¾î°¥ ¾Ë¸ÂÀº ¾ËÆÄºªÀº?,a,e ,I ,u
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß wo_ldÀÇ ºóÄ­¿¡ µé¾î°¥ ¾Ë¸ÂÀº ¾ËÆÄºªÀº?,r ,u,o,t 
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß damÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,´ï,³óÀå ,°úÀÏ,¿ÍÇÃ
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß sacrificeÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,Èñ»ý,»ç¶û,ÀÎ»ý,³ë·Â
-ÃÊµîÇÐ±³,1,2,¿µ¾î,´ÙÀ½ Áß mushroomÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,¹ö¼¸,ÀÚÀÛ³ª¹«,°ø°£,¹æ
-ÃÊµîÇÐ±³,1,2,¿µ¾î,´ÙÀ½ Áß luckÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,¿î,ÀÚ¹°¼è,°¨±Ý,¹æ¸ÁÀÌ
-ÃÊµîÇÐ±³,1,2,¿µ¾î,´ÙÀ½ Áß danceÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,Ãã,³ë·¡,ÇÑ¾à,Èñ¸Á
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß habitÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,½À°ü,¿î¸í,Åä³¢,¿©¿ì
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß openÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,¿­´Ù,¹®,´Ý´Ù,Àá±×´Ù
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß jobÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,ÀÏ,¶¥ ,Ã¥,¿ë
-ÃÊµîÇÐ±³,1,2,¿µ¾î,´ÙÀ½ Áß runÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,´Þ¸®´Ù,±â¾î°¡´Ù,Àáµé´Ù,¿ï´Ù
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß mythÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº,¼öÇÐ,½ÅÈ­,¿¬²É,±³¼ö
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß handleÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,¼ÕÀâÀÌ,¾È´ë,¸ÁÄ¡,¼Õ¸ñ
-ÃÊµîÇÐ±³,1,2,¿µ¾î,´ÙÀ½ Áß nailÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,¼ÕÅé,¹ß,Àü±â Åé,¿ä¸®
-ÃÊµîÇÐ±³,1,2,¿µ¾î,´ÙÀ½ Áß gloryÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,¿µ±¤,½½ÇÂ °á¸»,ÃÑ,¾Æ°¡¾¾
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß gradeÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,ÇÐ³â,ÇÐ±³,³ªÀÌ,¼±»ý´Ô
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß turtleÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,°ÅºÏÀÌ,°í¾çÀÌ,µ¹°í·¡,»õ¿ì
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß coughÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,±âÄ§,¼ýÀÚ,¸Á½Å,¿ªº´
-ÃÊµîÇÐ±³,1,2,¿µ¾î,´ÙÀ½ Áß coilÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,ÄÚÀÏ,»ç¶û,Àü±â,½Ä»§
-ÃÊµîÇÐ±³,1,1,¿µ¾î,´ÙÀ½ Áß umbrellaÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,¿ì»ê ,¿©¿ì,¿ìºñ,»ê¼ººñ
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,       ,,,,
+í•™êµ,í•™ë…„,ë‚œì´ë„,ê³¼ëª©,ë¬¸ì œ,ì •ë‹µ,ì„ íƒ 1,ì„ íƒ 2,ì„ íƒ 3
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ íŒŒëž‘ ìƒ‰ì€ ë¬´ì—‡ì¸ê°€ìš”?,blue,yellow,red,black
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë†ìž¥ì„ ëœ»í•˜ëŠ” ë‹¨ì–´ëŠ” ë¬´ì—‡ì¸ê°€ìš”?,farm,pet,fish,bird
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ê²¨ìš¸ì€ ì˜ì–´ë¡œ ë¬´ì—‡ì¼ê¹Œìš”?,winter,spring,summer,autumn
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,í•™êµë¥¼ ëœ»í•˜ëŠ” ì˜ì–´ëŠ” ë¬´ì—‡ì¼ê¹Œìš”?,school,park,mall,zoo
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,í•´ê°€ ë– ìžˆëŠ” ë‚ ì”¨ë¥¼ ë­ë¼ê³  í• ê¹Œìš”?,sunny,rainy,windy,cloudy
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ì•„ì´ìŠ¤í¬ë¦¼ì€ ì˜ì–´ë¡œ ë¬´ì—‡ì¼ê¹Œìš”?,ice cream,pizza,spaghetti,cream
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ì§‘ì„ ëœ»í•˜ëŠ” ë‹¨ì–´ëŠ” ë¬´ì—‡ì¼ê¹Œìš”?,home,school,park,restaurant
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ ì¡°ê·¸ë§ˆí•˜ë‹¤ ë¼ëŠ” ëœ»ì„ ê°€ì§„ ë‹¨ì–´ëŠ” ë¬´ì—‡ì¼ê¹Œìš”?,tiny,giant,strong,fast
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ í•´ë°”ë¼ê¸°ë¥¼ ëœ»í•˜ëŠ” ì˜ì–´ ë‹¨ì–´ëŠ” ë¬´ì—‡ì¸ê°€ìš”?,sunflower,tulip,rose,pumpkin
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ê°œê°€ ì§–ëŠ” ì†Œë¦¬ë¥¼ ì˜ì–´ë¡œ í•˜ë©´ ë¬´ì—‡ì¼ê¹Œìš”?,bark,meow,moo,quack
+ì´ˆë“±í•™êµ,1,2,ì˜ì–´,ë‹¤ìŒ ì¤‘ ì†ì„ ëœ»í•˜ëŠ” ë‹¨ì–´ëŠ” ë¬´ì—‡ì¸ê°€ìš”?,hand,foot,head,leg
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ ëª¨ìžë¥¼ ì˜ë¯¸í•˜ëŠ” ë‹¨ì–´ëŠ” ë¬´ì—‡ì¸ê°€ìš”?,hat,socks,gloves,scarf
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ ë°”ë‚˜ë‚˜ë¼ê³  ë¶ˆë¦¬ëŠ” ê²ƒì€ ë¬´ì—‡ì¼ê¹Œìš”?,banana,orange,apple,grape
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ ìžì „ê±°ë¥¼ ëœ»í•˜ëŠ” ë‹¨ì–´ëŠ” ë¬´ì—‡ì¸ê°€ìš”?,bicycle,ship,train,car
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ ë´„ì„ ëœ»í•˜ëŠ” ë‹¨ì–´ëŠ” ë¬´ì—‡ì¼ê¹Œìš”?,Spring,summer,autumn,winter
+ì´ˆë“±í•™êµ,1,2,ì˜ì–´,ë‹¤ìŒ ì¤‘ ì˜ë‹¤ ë¼ëŠ” ëœ»ì„ ê°€ì§„ ë‹¨ì–´ëŠ” ë¬´ì—‡ì¼ê¹Œìš”?,shoot,serve,dribble,tackle
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,12ì›” 25ì¼ì— ê¸°ë…í•˜ëŠ” ì¶•ì œëŠ” ë¬´ì—‡ì¼ê¹Œìš”?,christmas,halloween,thanksgiving,new year's day
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ ë„ì„œê´€ì„ ëœ»í•˜ëŠ” ë‹¨ì–´ëŠ” ë¬´ì—‡ì¼ê¹Œìš”?,library,park,restaurant,stadium
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ ì—°í•„ì„ ëœ»í•˜ëŠ” ë‹¨ì–´ëŠ” ë¬´ì—‡ì¼ê¹Œìš”?,pencil,eraser,ruler,book
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ í˜•ì œ ê´€ê³„ë¥¼ ë‚˜íƒ€ë‚´ëŠ” ë‹¨ì–´ëŠ” ë¬´ì—‡ì¼ê¹Œìš”?,brother,cousin,uncle,grandpader
+ì´ˆë“±í•™êµ,1,2,ì˜ì–´,ë‹¤ìŒ ì¤‘ íŒŒëž‘ì„ ëœ»í•˜ëŠ” ìƒ‰ì€ ë¬´ì—‡ì¸ê°€ìš”?,blue,yellow,red,black
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ìƒˆë¥¼ ëœ»í•˜ëŠ” ë‹¨ì–´ëŠ” ë¬´ì—‡ì¸ê°€ìš”?,bird,dog,fish,pig
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ ê°€ì„ì€ ì˜ì–´ë¡œ ë¬´ì—‡ì¼ê¹Œìš”?,autumn,spring,summer,winter
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ ë™ë¬¼ì›ì„ ëœ»í•˜ëŠ” ì˜ì–´ëŠ” ë¬´ì—‡ì¼ê¹Œìš”?,zoo,house,restaurant,school
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,íë¦° ë‚ ì”¨ë¥¼ ë­ë¼ê³  í• ê¹Œìš”?,Cloudy,rainy,windy,sunny
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ ìŠ¤íŒŒê²Œí‹°ëŠ” ì˜ì–´ë¡œ ë¬´ì—‡ì¼ê¹Œìš”?,spaghetti,pizza,ice cream,salad
+ì´ˆë“±í•™êµ,1,2,ì˜ì–´,ë‹¤ìŒ ì¤‘ ê³µì›ì´ë¼ëŠ” ëœ»ì„ ê°€ì§„ ë‹¨ì–´ëŠ” ë¬´ì—‡ì¼ê¹Œìš”?,park,school,restaurant,house
+ì´ˆë“±í•™êµ,1,2,ì˜ì–´,ë‹¤ìŒ ì¤‘ ë¹ ë¥´ë‹¤ ë¼ëŠ” ëœ»ì„ ê°€ì§„ ë‹¨ì–´ëŠ” ë¬´ì—‡ì¼ê¹Œìš”?,fast,giant,tiny,strong
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ ìž¥ë¯¸ë¥¼ ëœ»í•˜ëŠ” ì˜ì–´ ë‹¨ì–´ëŠ” ë¬´ì—‡ì¸ê°€ìš”?,rose,tulip,sunflower,pumpkin
+ì´ˆë“±í•™êµ,1,3,ì˜ì–´,ì˜¤ë¦¬ê°€ ìš°ëŠ” ì†Œë¦¬ë¥¼ ì˜ì–´ë¡œ í•˜ë©´ ë¬´ì—‡ì¼ê¹Œìš”?,quack,meow,moo,bark
+ì´ˆë“±í•™êµ,1,2,ì˜ì–´,ìžë™ì°¨ë¼ëŠ” ëœ»ì„ ê°€ì§„ c_rì˜ ë¹ˆì¹¸ì— ë“¤ì–´ê°ˆ ì•Œë§žì€ ì•ŒíŒŒë²³ì€?,a,e ,I ,u
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ wo_ldì˜ ë¹ˆì¹¸ì— ë“¤ì–´ê°ˆ ì•Œë§žì€ ì•ŒíŒŒë²³ì€?,r ,u,o,t 
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ damì˜ ëœ»ìœ¼ë¡œ ì•Œë§žì€ ê²ƒì€?,ëŒ,ë†ìž¥ ,ê³¼ì¼,ì™€í”Œ
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ sacrificeì˜ ëœ»ìœ¼ë¡œ ì•Œë§žì€ ê²ƒì€?,í¬ìƒ,ì‚¬ëž‘,ì¸ìƒ,ë…¸ë ¥
+ì´ˆë“±í•™êµ,1,2,ì˜ì–´,ë‹¤ìŒ ì¤‘ mushroomì˜ ëœ»ìœ¼ë¡œ ì•Œë§žì€ ê²ƒì€?,ë²„ì„¯,ìžìž‘ë‚˜ë¬´,ê³µê°„,ë°©
+ì´ˆë“±í•™êµ,1,2,ì˜ì–´,ë‹¤ìŒ ì¤‘ luckì˜ ëœ»ìœ¼ë¡œ ì•Œë§žì€ ê²ƒì€?,ìš´,ìžë¬¼ì‡ ,ê°ê¸ˆ,ë°©ë§ì´
+ì´ˆë“±í•™êµ,1,2,ì˜ì–´,ë‹¤ìŒ ì¤‘ danceì˜ ëœ»ìœ¼ë¡œ ì•Œë§žì€ ê²ƒì€?,ì¶¤,ë…¸ëž˜,í•œì•½,í¬ë§
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ habitì˜ ëœ»ìœ¼ë¡œ ì•Œë§žì€ ê²ƒì€?,ìŠµê´€,ìš´ëª…,í† ë¼,ì—¬ìš°
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ openì˜ ëœ»ìœ¼ë¡œ ì•Œë§žì€ ê²ƒì€?,ì—´ë‹¤,ë¬¸,ë‹«ë‹¤,ìž ê·¸ë‹¤
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ jobì˜ ëœ»ìœ¼ë¡œ ì•Œë§žì€ ê²ƒì€?,ì¼,ë•… ,ì±…,ìš©
+ì´ˆë“±í•™êµ,1,2,ì˜ì–´,ë‹¤ìŒ ì¤‘ runì˜ ëœ»ìœ¼ë¡œ ì•Œë§žì€ ê²ƒì€?,ë‹¬ë¦¬ë‹¤,ê¸°ì–´ê°€ë‹¤,ìž ë“¤ë‹¤,ìš¸ë‹¤
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ mythì˜ ëœ»ìœ¼ë¡œ ì•Œë§žì€ ê²ƒì€,ìˆ˜í•™,ì‹ í™”,ì—°ê½ƒ,êµìˆ˜
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ handleì˜ ëœ»ìœ¼ë¡œ ì•Œë§žì€ ê²ƒì€?,ì†ìž¡ì´,ì•ˆëŒ€,ë§ì¹˜,ì†ëª©
+ì´ˆë“±í•™êµ,1,2,ì˜ì–´,ë‹¤ìŒ ì¤‘ nailì˜ ëœ»ìœ¼ë¡œ ì•Œë§žì€ ê²ƒì€?,ì†í†±,ë°œ,ì „ê¸° í†±,ìš”ë¦¬
+ì´ˆë“±í•™êµ,1,2,ì˜ì–´,ë‹¤ìŒ ì¤‘ gloryì˜ ëœ»ìœ¼ë¡œ ì•Œë§žì€ ê²ƒì€?,ì˜ê´‘,ìŠ¬í”ˆ ê²°ë§,ì´,ì•„ê°€ì”¨
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ gradeì˜ ëœ»ìœ¼ë¡œ ì•Œë§žì€ ê²ƒì€?,í•™ë…„,í•™êµ,ë‚˜ì´,ì„ ìƒë‹˜
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ turtleì˜ ëœ»ìœ¼ë¡œ ì•Œë§žì€ ê²ƒì€?,ê±°ë¶ì´,ê³ ì–‘ì´,ëŒê³ ëž˜,ìƒˆìš°
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ coughì˜ ëœ»ìœ¼ë¡œ ì•Œë§žì€ ê²ƒì€?,ê¸°ì¹¨,ìˆ«ìž,ë§ì‹ ,ì—­ë³‘
+ì´ˆë“±í•™êµ,1,2,ì˜ì–´,ë‹¤ìŒ ì¤‘ coilì˜ ëœ»ìœ¼ë¡œ ì•Œë§žì€ ê²ƒì€?,ì½”ì¼,ì‚¬ëž‘,ì „ê¸°,ì‹ë¹µ
+ì´ˆë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ umbrellaì˜ ëœ»ìœ¼ë¡œ ì•Œë§žì€ ê²ƒì€?,ìš°ì‚° ,ì—¬ìš°,ìš°ë¹„,ì‚°ì„±ë¹„

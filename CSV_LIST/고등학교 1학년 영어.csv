@@ -1,85 +1,19 @@
-ÇĞ±³,ÇĞ³â,³­ÀÌµµ,°ú¸ñ,¹®Á¦,Á¤´ä,¼±ÅÃ 1,¼±ÅÃ 2,¼±ÅÃ 3
-°íµîÇĞ±³,1,1,¿µ¾î,´ÙÀ½ Áß objectÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,»ç¹°,°á¼Ó,¿ª»ç,ÀÎ»ç
-°íµîÇĞ±³,1,3,¿µ¾î,´ÙÀ½ Áß bowlÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,ÀıÇÏ´Ù,±×¸©,»óÂ¡,±¸¸£´Ù
-°íµîÇĞ±³,1,1,¿µ¾î,´ÙÀ½ Áß effortÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,³ë·Â,°Ç°­,°¨µ¿,´Ù¸¥
-°íµîÇĞ±³,1,1,¿µ¾î,´ÙÀ½ Áß comfortÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,Æí¾È,¾àÁ¡,ºÒ¾È,º¹Åë
-°íµîÇĞ±³,1,3,¿µ¾î,´ÙÀ½ Áß shellÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,¼Ò¶ó,¹°°í±â,¹°¹ü,ÂüÄ¡
-°íµîÇĞ±³,1,1,¿µ¾î,´ÙÀ½ Áß presentÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,ÇöÀç,°ú°Å,¹Ì·¡,ÀúÁÖ
-°íµîÇĞ±³,1,3,¿µ¾î,´ÙÀ½ Áß petalÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,²ÉÀÙ,³«¿± ÀÙ,´«²É,¿ª»ç
-°íµîÇĞ±³,1,1,¿µ¾î,´ÙÀ½ Áß atomÀÇ ¶æÀ¸·Î ¾Ë¸ÂÀº °ÍÀº?,¿øÀÚ ,ºĞÀÚ,¿¬½É,È­ÇĞ¹İÀÀ
-°íµîÇĞ±³,1,3,¿µ¾î,"""What is the capital city of France?""",Paris,london,rome,berlin
-°íµîÇĞ±³,1,3,¿µ¾î,"""Who wrote the play 'Romeo and Juliet'?""",William Shakespeare,Charles Dickens,Jane Austen,Mark Twain
-°íµîÇĞ±³,1,2,¿µ¾î,"""What is the chemical symbol for gold?""",Au,Ag,Hg,Cu
-°íµîÇĞ±³,1,3,¿µ¾î,"""What is the longest river in the world?""",Nile River,Amazon River,Yangtze River ,Mississippi River
-°íµîÇĞ±³,1,3,¿µ¾î,"""Who painted the Mona Lisa?""",Leonardo da Vinci,Vincent van Gogh,Pablo Picasso,Michelangelo
-°íµîÇĞ±³,1,3,¿µ¾î,"""What is the plural form of 'mouse'?""",mice,Mouses,Mices,Mousies
-°íµîÇĞ±³,1,3,¿µ¾î,"""What is the capital city of Japan?""",Tokyo,Seoul,Beijing,Bangkok
-°íµîÇĞ±³,1,3,¿µ¾î,"""Which planet is known as the 'Red Planet'?""",Mars,Mercury,Uranus,Neptune
-°íµîÇĞ±³,1,1,¿µ¾î,"""What is the largest organ in the human body?""",Skin,Brain,Liver,Heart
-°íµîÇĞ±³,1,3,¿µ¾î,"""Who is the current President of the United States?""",Joe Biden,Donald Trump,Barack Obama,George Washington
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,       ,,,,
+í•™êµ,í•™ë…„,ë‚œì´ë„,ê³¼ëª©,ë¬¸ì œ,ì •ë‹µ,ì„ íƒ 1,ì„ íƒ 2,ì„ íƒ 3
+ê³ ë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ objectì˜ ëœ»ìœ¼ë¡œ ì•Œë§ì€ ê²ƒì€?,ì‚¬ë¬¼,ê²°ì†,ì—­ì‚¬,ì¸ì‚¬
+ê³ ë“±í•™êµ,1,3,ì˜ì–´,ë‹¤ìŒ ì¤‘ bowlì˜ ëœ»ìœ¼ë¡œ ì•Œë§ì€ ê²ƒì€?,ì ˆí•˜ë‹¤,ê·¸ë¦‡,ìƒì§•,êµ¬ë¥´ë‹¤
+ê³ ë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ effortì˜ ëœ»ìœ¼ë¡œ ì•Œë§ì€ ê²ƒì€?,ë…¸ë ¥,ê±´ê°•,ê°ë™,ë‹¤ë¥¸
+ê³ ë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ comfortì˜ ëœ»ìœ¼ë¡œ ì•Œë§ì€ ê²ƒì€?,í¸ì•ˆ,ì•½ì ,ë¶ˆì•ˆ,ë³µí†µ
+ê³ ë“±í•™êµ,1,3,ì˜ì–´,ë‹¤ìŒ ì¤‘ shellì˜ ëœ»ìœ¼ë¡œ ì•Œë§ì€ ê²ƒì€?,ì†Œë¼,ë¬¼ê³ ê¸°,ë¬¼ë²”,ì°¸ì¹˜
+ê³ ë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ presentì˜ ëœ»ìœ¼ë¡œ ì•Œë§ì€ ê²ƒì€?,í˜„ì¬,ê³¼ê±°,ë¯¸ë˜,ì €ì£¼
+ê³ ë“±í•™êµ,1,3,ì˜ì–´,ë‹¤ìŒ ì¤‘ petalì˜ ëœ»ìœ¼ë¡œ ì•Œë§ì€ ê²ƒì€?,ê½ƒì,ë‚™ì—½ ì,ëˆˆê½ƒ,ì—­ì‚¬
+ê³ ë“±í•™êµ,1,1,ì˜ì–´,ë‹¤ìŒ ì¤‘ atomì˜ ëœ»ìœ¼ë¡œ ì•Œë§ì€ ê²ƒì€?,ì›ì ,ë¶„ì,ì—°ì‹¬,í™”í•™ë°˜ì‘
+ê³ ë“±í•™êµ,1,3,ì˜ì–´,"""What is the capital city of France?""",Paris,london,rome,berlin
+ê³ ë“±í•™êµ,1,3,ì˜ì–´,"""Who wrote the play 'Romeo and Juliet'?""",William Shakespeare,Charles Dickens,Jane Austen,Mark Twain
+ê³ ë“±í•™êµ,1,2,ì˜ì–´,"""What is the chemical symbol for gold?""",Au,Ag,Hg,Cu
+ê³ ë“±í•™êµ,1,3,ì˜ì–´,"""What is the longest river in the world?""",Nile River,Amazon River,Yangtze River ,Mississippi River
+ê³ ë“±í•™êµ,1,3,ì˜ì–´,"""Who painted the Mona Lisa?""",Leonardo da Vinci,Vincent van Gogh,Pablo Picasso,Michelangelo
+ê³ ë“±í•™êµ,1,3,ì˜ì–´,"""What is the plural form of 'mouse'?""",mice,Mouses,Mices,Mousies
+ê³ ë“±í•™êµ,1,3,ì˜ì–´,"""What is the capital city of Japan?""",Tokyo,Seoul,Beijing,Bangkok
+ê³ ë“±í•™êµ,1,3,ì˜ì–´,"""Which planet is known as the 'Red Planet'?""",Mars,Mercury,Uranus,Neptune
+ê³ ë“±í•™êµ,1,1,ì˜ì–´,"""What is the largest organ in the human body?""",Skin,Brain,Liver,Heart
+ê³ ë“±í•™êµ,1,3,ì˜ì–´,"""Who is the current President of the United States?""",Joe Biden,Donald Trump,Barack Obama,George Washington
