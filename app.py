@@ -137,7 +137,7 @@ def get_user_id():
     result = cursor.fetchone()
 
     if result:
-        user_id = result[0]
+        user_id = result["user_id"]
         return jsonify({"user_id": user_id}), 200
     else:
         return jsonify({"message": "User not found"}), 404
