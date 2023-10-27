@@ -192,7 +192,7 @@ def get_friendsPOST(user_id):
             return jsonify({"message": "No friends found for the given user_id."}), 200
 
         # 조회한 유저 정보 반환
-        return jsonify(check_result), 200
+        return jsonify(check_result[0]), 200  # 리스트의 첫 번째 항목만 반환
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
