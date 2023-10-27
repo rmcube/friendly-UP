@@ -16,6 +16,7 @@ def get_db_connection():
 
 
 conn = get_db_connection()
+
 # 데이터를 적재할 CSV 파일 경로 지정 (경로는 실제 환경에 맞게 변경해야 합니다.)
 csv_directory_path = "/home/ubuntu/friendly-UP/CSV_LIST/"
 
@@ -29,32 +30,37 @@ for filename in os.listdir(csv_directory_path):
     if filename.endswith(".csv"):
         csv_file_path = os.path.join(csv_directory_path, filename)
 
-        # pandas를 사용하여 CSV 파일 읽기
-        df = pd.read_csv(csv_file_path, dtype={"학년": int, "난이도": int})
+        try:
+            # pandas를 사용하여 CSV 파일 읽기
+            df = pd.read_csv(csv_file_path, dtype={"학년": int, "난이도": int})
 
-        for i, row in df.iterrows():
-            query = """
-                INSERT INTO problems (school, grade, difficulty, subject,
-                                      question, answer, ans1, ans2, ans3)
-                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
-            """
+            for i, row in df.iterrows():
+                query = """
+                    INSERT INTO problems (school, grade, difficulty, subject,
+                                          question, answer, ans1, ans2, ans3)
+                    VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                """
 
-            cursor.execute(
-                query,
-                (
-                    row["학교"],
-                    row["학년"],
-                    row["난이도"],
-                    row["과목"],
-                    row["문제"],
-                    row["정답"],
-                    row["선택1"],
-                    row["선택2"],
-                    row["선택3"],
-                ),
-            )
+                cursor.execute(
+                    query,
+                    (
+                        row["학교"],
+                        row["학년"],
+                        row["난이도"],
+                        row["과목"],
+                        row["문제"],
+                        row["정답"],
+                        row["선택1"],
+                        row["선택2"],
+                        row["선택3"],
+                    ),
+                )
 
-        conn.commit()
+            conn.commit()
+
+        except pd.errors.ParserError:
+            print(f"읽을 수 없는 CSV 파일: {csv_file_path}")
+            continue
 
 cursor.close()
 conn.close()
