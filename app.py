@@ -36,6 +36,48 @@ app.register_blueprint(login_routes_shareP)
 app.register_blueprint(login_routes_gotoP)
 
 
+@app.route("/delete_friend", methods=["DELETE"])
+def delete_friend():
+    data = request.get_json()
+    user_id = data.get("user_id")
+    friend_id = data.get("friend_id")
+
+    if not user_id or not friend_id:
+        return jsonify({"message": "user_id and friend_id are required"}), 400
+
+    db_conn = get_db_connection()
+    cursor = db_conn.cursor()
+
+    try:
+        # 친구 관계를 찾습니다.
+        query = """
+        SELECT * FROM friends
+        WHERE (user_id = %s AND friend_id = %s) OR (user_id = %s AND friend_id = %s)
+        """
+        cursor.execute(query, (user_id, friend_id, friend_id, user_id))
+        result = cursor.fetchone()
+
+        if not result:
+            return jsonify({"message": "No friend relationship found"}), 404
+
+        # 찾은 친구 관계를 삭제합니다.
+        query = """
+        DELETE FROM friends
+        WHERE relation_id = %s
+        """
+        cursor.execute(query, (result["relation_id"],))
+        db_conn.commit()
+
+        return jsonify({"message": "Friend deleted successfully"}), 200
+
+    except Exception as e:
+        return jsonify({"message": str(e)}), 400
+
+    finally:
+        cursor.close()
+        db_conn.close()
+
+
 # 문제 불러오기 (차현우 임시 제작)
 def random_problems(school, grade, preferred_subject, difficulty):
     conn = get_db_connection()
