@@ -65,13 +65,13 @@ CREATE TABLE problems (
 	problem_id	INT AUTO_INCREMENT PRIMARY KEY ,
 	school	VARCHAR(50)	null ,
 	difficulty	int	not	null ,
-    question	VARCHAR(100)null ,	
-    answer	VARCHAR(50)null ,
+    question	TEXT null ,	
+    answer	TEXT null ,
 	grade	int	not	null , 	
-	subject	VARCHAR(50)null , 	
-	ans1	varchar(50)null , 	
-	ans2	varchar(50)null , 	
-	ans3	VARCHAR(50)NULL  	
+	subject	VARCHAR(50) null , 	
+	ans1	TEXT null , 	
+	ans2	TEXT null , 	
+	ans3	TEXT NULL  	
 
 );
 """,
