@@ -21,6 +21,7 @@ CREATE TABLE user (
 	created_at DATETIME NOT NULL,
 	updated_at DATETIME NULL,
     shared_at DATETIME NULL,
+    get_at DATETIME NULL,
 	password VARCHAR(50) NOT NULL,
 	cash INT NULL,
 	prefer_subject VARCHAR(50) NOT NULL,
