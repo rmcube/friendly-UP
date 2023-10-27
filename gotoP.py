@@ -170,7 +170,6 @@ def Get_PB():
     conn = get_db_connection()
     cursor = conn.cursor()
     question = request.json["question"]
-    print(question)
     try:
         # question을 사용하여 problem_id 검색
         query = "SELECT problem_id FROM problems WHERE question = %s"
@@ -178,7 +177,7 @@ def Get_PB():
         result = cursor.fetchone()
         if result:
             problem_id = result["problem_id"]
-            return problem_id
+            return jsonify({"problem_id": problem_id})
 
     except Exception as e:
         print("Error:", str(e))
