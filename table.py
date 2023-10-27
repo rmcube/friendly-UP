@@ -40,9 +40,9 @@ CREATE TABLE user (
     type VARCHAR(255),
     sender_id INT,
     recipient_id INT,
-    problem_id INT,
-    question TEXT,
-    answer TEXT,
+    problem_id INT null,
+    question TEXT null,
+    answer TEXT null,
     PRIMARY KEY (id)
 );""",
     """

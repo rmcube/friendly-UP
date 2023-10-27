@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from datetime import datetime
 from LoginSignup import login_routes as login_routes_signup
 from AboutFriends import login_routes as login_routes_friends
+from shareP import login_routes as login_routes_shareP
 from query import query
 
 load_dotenv()
@@ -30,6 +31,7 @@ def get_db_connection():
 
 app.register_blueprint(login_routes_signup)
 app.register_blueprint(login_routes_friends)
+app.register_blueprint(login_routes_shareP)
 
 
 # 문제 불러오기 (차현우 임시 제작)
