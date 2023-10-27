@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 from apscheduler.schedulers.background import BackgroundScheduler
 
 # blueprint는 메인(app.py)로 다른 파일들(class)를 묶어주는 역할을 한다
-login_routes = Blueprint("member", __name__, url_prefix="/api/user")
+login_routes = Blueprint("member3", __name__, url_prefix="/api/user")
 load_dotenv()
 
 # MySQL 설정
@@ -81,6 +81,33 @@ def share_solution():
         db_conn.commit()
 
         return jsonify({"message": "Solution shared successfully."}), 200
+
+    except Exception as e:
+        return jsonify({"message": str(e)}), 400
+
+    finally:
+        cursor.close()
+        db_conn.close()
+
+
+@login_routes.route("/get_shared_solutions/<int:user_id>", methods=["GET"])
+def get_shared_solutions(user_id):
+    db_conn = get_db_connection()
+    cursor = db_conn.cursor()
+
+    try:
+        query = """
+        SELECT * FROM FriendMessage
+        WHERE recipient_id = %s AND type = '해법 공유'
+        """
+        cursor.execute(query, (user_id,))
+        results = cursor.fetchall()
+
+        # 결과가 없다면 오류 메시지 반환
+        if not results:
+            return jsonify({"message": "해법 공유 메시지가 없습니다."}), 400
+
+        return jsonify(results), 200
 
     except Exception as e:
         return jsonify({"message": str(e)}), 400
