@@ -252,7 +252,7 @@ def get_realPB(problem_id):
     try:
         query = """
         SELECT * FROM problems
-        WHERE problem_id = %s'
+        WHERE problem_id = %s
         """
         cursor.execute(query, (problem_id,))
         results = cursor.fetchall()
