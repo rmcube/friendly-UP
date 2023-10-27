@@ -45,6 +45,10 @@ def send_friend_request():
 
         friend_id = result["user_id"]
 
+        # friend_id와 user_id가 동일한 경우에는 친구 요청 불가능
+        if friend_id == user_id:
+            return jsonify({"error": "Cannot send friend request to yourself."}), 400
+
         # 이미 친구인지 확인
         check_query = "SELECT * FROM friends WHERE ((user_id = %s AND friend_id = %s) OR (user_id = %s AND friend_id = %s)) AND request_status = 'friends'"
         cursor.execute(check_query, (user_id, friend_id, friend_id, user_id))
