@@ -57,24 +57,26 @@ def share_solution():
             recipient_result["get_at"] if recipient_result is not None else None
         )
 
-        # sender의 shared_at 값이 오늘 날짜와 같거나, sender의 updated_at 값이 오늘 날짜가 아니거나,
-        # recipient의 get_at 값이 오늘 날짜라면 오류 메시지 반환
+        # sender의 shared_at 값이 오늘 날짜일 경우 불가능
         if (
-            sender_shared_at.date() == datetime.today().date()
-            or sender_updated_at.date() != datetime.today().date()
-            or (
-                recipient_get_at is not None
-                and recipient_get_at.date() == datetime.today().date()
-            )
+            sender_shared_at is not None
+            and sender_shared_at.date() == datetime.today().date()
         ):
-            return (
-                jsonify(
-                    {
-                        "message": "하루에 두 번 보낼 수 없거나, 오늘 업데이트가 이루어지지 않았거나, 수신자가 이미 오늘 해법을 받았습니다."
-                    }
-                ),
-                400,
-            )
+            return jsonify({"message": "하루에 두 번 보낼 수 없습니다."}), 400
+
+        # sender의 updated_at 값이 오늘이 아닌 경우 불가능
+        if (
+            sender_updated_at is not None
+            and sender_updated_at.date() != datetime.today().date()
+        ):
+            return jsonify({"message": "오늘 업데이트가 이루어지지 않았습니다."}), 400
+
+        # recipient의 get_at 값이 오늘 날짜일 경우 불가능
+        if (
+            recipient_get_at is not None
+            and recipient_get_at.date() == datetime.today().date()
+        ):
+            return jsonify({"message": "수신자가 이미 오늘 해법을 받았습니다."}), 400
 
         query = """
         INSERT INTO FriendMessage (type, sender_id, recipient_id, question, answer)
@@ -85,6 +87,11 @@ def share_solution():
         # sender의 shared_at 값을 현재 시간으로 업데이트
         cursor.execute(
             "UPDATE user SET shared_at = NOW() WHERE user_id = %s", (sender_id,)
+        )
+
+        # recipient의 get_at 값을 현재 시간으로 업데이트
+        cursor.execute(
+            "UPDATE user SET get_at = NOW() WHERE user_id = %s", (recipient_id,)
         )
 
         db_conn.commit()
