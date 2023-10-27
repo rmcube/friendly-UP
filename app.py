@@ -36,7 +36,7 @@ app.register_blueprint(login_routes_shareP)
 app.register_blueprint(login_routes_gotoP)
 
 
-@app.route("/delete_friend", methods=["DELETE"])
+@app.route("/api/user/delete_friend", methods=["POST"])
 def delete_friend():
     data = request.get_json()
     user_id = data.get("user_id")
