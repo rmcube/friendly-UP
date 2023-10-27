@@ -119,3 +119,47 @@ def send_problems():
     finally:
         cursor.close()
         db_conn.close()
+
+
+def get_question_from_problem_id(problem_id):
+    question = ""
+
+    # MySQL 연결
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    try:
+        # problem_id를 사용하여 question 검색
+        query = "SELECT question FROM problems WHERE problem_id = %s"
+        cursor.execute(query, (problem_id,))
+        result = cursor.fetchone()
+
+        if result:
+            question = result[0]
+
+    except Exception as e:
+        print("Error:", str(e))
+
+    finally:
+        # 연결 종료
+        cursor.close()
+        conn.close()
+
+    return question
+
+
+@login_routes.route("/get_questions", methods=["POST"])
+def api_get_questions():
+    data = request.get_json()
+
+    if "problem_ids" not in data:
+        return jsonify({"error": "problem_ids is missing"}), 400
+
+    problem_ids = data["problem_ids"]
+    questions = []
+
+    for problem_id in problem_ids:
+        question = get_question_from_problem_id(problem_id)
+        questions.append(question)
+
+    return jsonify({"questions": questions}), 200
