@@ -124,7 +124,7 @@ def get_user_id():
     cursor = db_conn.cursor()
     data = request.get_json()
 
-    friendID = data.get("friendID")
+    friendID = data.get("friend_id")
 
     query = """
     SELECT user_id
