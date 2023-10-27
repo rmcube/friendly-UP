@@ -133,7 +133,7 @@ def get_question_from_problem_id(problem_id):
         query = "SELECT question FROM problems WHERE problem_id = %s"
         cursor.execute(query, (problem_id,))
         result = cursor.fetchone()
-
+        print(result)
         if result:
             question = result[0]
 
