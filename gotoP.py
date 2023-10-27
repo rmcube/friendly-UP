@@ -162,3 +162,112 @@ def api_get_questions():
         questions.append(question)
 
     return jsonify({"questions": questions}), 200
+
+
+@login_routes.route("/get_pb", methods=["POST"])
+def Get_PB():
+    # MySQL 연결
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    question = request.json["question"]
+
+    try:
+        # question을 사용하여 problem_id 검색
+        query = "SELECT problem_id FROM problems WHERE question = %s"
+        cursor.execute(query, (question,))
+        result = cursor.fetchone()
+        if result:
+            problem_id = result["problem_id"]
+            return problem_id
+
+    except Exception as e:
+        print("Error:", str(e))
+
+    finally:
+        # 연결 종료
+        cursor.close()
+        conn.close()
+
+
+@login_routes.route("/send_problem_message", methods=["POST"])
+def send_problem_message():
+    db_conn = get_db_connection()
+    cursor = db_conn.cursor()
+
+    sender_id = request.json["sender_id"]
+    recipient_id = request.json["recipient_id"]
+    problem_id = request.json["problem_id"]
+
+    try:
+        # 문제 보내기 메시지를 FriendMessage 테이블에 삽입
+        query = """
+                INSERT INTO FriendMessage (type, sender_id, recipient_id, problem_id)
+                VALUES (%s, %s, %s, %s)
+                """
+        cursor.execute(query, ("문제 보내기", sender_id, recipient_id, problem_id))
+        db_conn.commit()
+
+        return jsonify({"message": "문제 보내기가 완료되었습니다."}), 200
+
+    except Exception as e:
+        db_conn.rollback()
+        return jsonify({"message": str(e)}), 400
+
+    finally:
+        cursor.close()
+        db_conn.close()
+
+
+@login_routes.route("/get_goPB/<int:user_id>", methods=["GET"])
+def get_goPB(user_id):
+    db_conn = get_db_connection()
+    cursor = db_conn.cursor()
+
+    try:
+        query = """
+        SELECT * FROM FriendMessage
+        WHERE recipient_id = %s AND type = '문제 보내기'
+        """
+        cursor.execute(query, (user_id,))
+        results = cursor.fetchall()
+
+        # 결과가 없다면 오류 메시지 반환
+        if not results:
+            return jsonify({"message": "해법 공유 메시지가 없습니다."}), 400
+
+        return jsonify(results), 200
+
+    except Exception as e:
+        return jsonify({"message": str(e)}), 400
+
+    finally:
+        cursor.close()
+        db_conn.close()
+
+
+@login_routes.route("/delete_goPB/<int:recipient_id>", methods=["DELETE"])
+def delete_goPB(recipient_id):
+    db_conn = get_db_connection()
+    cursor = db_conn.cursor()
+
+    try:
+        query = """
+        DELETE FROM FriendMessage
+        WHERE recipient_id = %s AND type = '문제 보내기'
+        """
+        cursor.execute(query, (recipient_id,))
+
+        db_conn.commit()  # 변경 사항을 데이터베이스에 반영합니다.
+
+        # 삭제된 row의 수를 확인합니다.
+        if cursor.rowcount == 0:
+            return jsonify({"message": "해당 recipient_id를 가진 해법 공유 메시지가 없습니다."}), 404
+        else:
+            return jsonify({"message": f"{cursor.rowcount}개의 해법 공유 메시지가 삭제되었습니다."}), 200
+
+    except Exception as e:
+        return jsonify({"message": str(e)}), 400
+
+    finally:
+        cursor.close()
+        db_conn.close()

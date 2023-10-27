@@ -63,7 +63,6 @@ def share_solution():
             and sender_shared_at.date() == datetime.today().date()
         ):
             return jsonify({"message": "하루에 두 번 보낼 수 없습니다."}), 400
-
         # sender의 updated_at 값이 오늘이 아닌 경우 불가능
         if (
             sender_updated_at is not None
