@@ -49,7 +49,23 @@ for filename in os.listdir(csv_directory_path):
                 }
             )
 
+            # 적재할 열 목록 정의
+            columns = [
+                "school",
+                "grade",
+                "difficulty",
+                "subject",
+                "question",
+                "answer",
+                "ans1",
+                "ans2",
+                "ans3",
+            ]
+
             for _, row in df.iterrows():
+                # 열 이름에 따라 데이터를 가져옵니다
+                data = [row[column] for column in columns]
+
                 query = """
                     INSERT INTO problems (school, grade, difficulty, subject,
                                           question, answer, ans1, ans2, ans3)
@@ -58,17 +74,7 @@ for filename in os.listdir(csv_directory_path):
 
                 cursor.execute(
                     query,
-                    (
-                        row["school"],
-                        row["grade"],
-                        row["difficulty"],
-                        row["subject"],
-                        row["question"],
-                        row["answer"],
-                        row["ans1"],
-                        row["ans2"],
-                        row["ans3"],
-                    ),
+                    tuple(data),
                 )
 
             conn.commit()
